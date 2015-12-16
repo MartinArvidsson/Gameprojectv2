@@ -27,3 +27,32 @@ C:\Users\Martin\Desktop\Spel assignment4\Gameproject\Gameproject\bin\Windows\Deb
 C:\Users\Martin\Desktop\Spel assignment4\Gameproject\Gameproject\bin\Windows\Debug\Content\Ballground.png
 C:\Users\Martin\Desktop\Spel assignment4\Gameproject\Gameproject\bin\Windows\Debug\Content\Playercreatingground.png
 C:\Users\Martin\Desktop\Spel assignment4\Gameproject\Gameproject\bin\Windows\Debug\Content\Playergroundtile.png
+C:\Users\Martin\Desktop\Gameprojectv2\Gameproject\Gameproject\obj\x86\Debug\Gameproject.exe
+C:\Users\Martin\Desktop\Gameprojectv2\Gameproject\Gameproject\obj\x86\Debug\Gameproject.pdb
+C:\Users\Martin\Desktop\Gameprojectv2\Gameproject\Gameproject\bin\Windows\Debug\Content\BALL.png
+C:\Users\Martin\Desktop\Gameprojectv2\Gameproject\Gameproject\bin\Windows\Debug\Content\Ballground.png
+C:\Users\Martin\Desktop\Gameprojectv2\Gameproject\Gameproject\bin\Windows\Debug\Content\Playercreatingground.png
+C:\Users\Martin\Desktop\Gameprojectv2\Gameproject\Gameproject\bin\Windows\Debug\Content\Playergroundtile.png
+C:\Users\Martin\Desktop\Gameprojectv2\Gameproject\Gameproject\bin\Windows\Debug\Gameproject.exe
+C:\Users\Martin\Desktop\Gameprojectv2\Gameproject\Gameproject\bin\Windows\Debug\Gameproject.pdb
+C:\Users\Martin\Desktop\Gameprojectv2\Gameproject\Gameproject\bin\Windows\Debug\MonoGame.Framework.dll
+C:\Users\Martin\Desktop\Gameprojectv2\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.MediaFoundation.dll
+C:\Users\Martin\Desktop\Gameprojectv2\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.dll
+C:\Users\Martin\Desktop\Gameprojectv2\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.XAudio2.dll
+C:\Users\Martin\Desktop\Gameprojectv2\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.Direct3D11.dll
+C:\Users\Martin\Desktop\Gameprojectv2\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.DXGI.dll
+C:\Users\Martin\Desktop\Gameprojectv2\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.Direct2D1.dll
+C:\Users\Martin\Desktop\Gameprojectv2\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.XInput.dll
+C:\Users\Martin\Desktop\Gameprojectv2\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.RawInput.dll
+C:\Users\Martin\Desktop\Gameprojectv2\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.Direct3D9.dll
+C:\Users\Martin\Desktop\Gameprojectv2\Gameproject\Gameproject\bin\Windows\Debug\MonoGame.Framework.xml
+C:\Users\Martin\Desktop\Gameprojectv2\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.MediaFoundation.xml
+C:\Users\Martin\Desktop\Gameprojectv2\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.xml
+C:\Users\Martin\Desktop\Gameprojectv2\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.XAudio2.xml
+C:\Users\Martin\Desktop\Gameprojectv2\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.Direct3D11.xml
+C:\Users\Martin\Desktop\Gameprojectv2\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.DXGI.xml
+C:\Users\Martin\Desktop\Gameprojectv2\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.Direct2D1.xml
+C:\Users\Martin\Desktop\Gameprojectv2\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.XInput.xml
+C:\Users\Martin\Desktop\Gameprojectv2\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.RawInput.xml
+C:\Users\Martin\Desktop\Gameprojectv2\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.Direct3D9.xml
+C:\Users\Martin\Desktop\Gameprojectv2\Gameproject\Gameproject\obj\x86\Debug\Gameproject.csprojResolveAssemblyReference.cache
