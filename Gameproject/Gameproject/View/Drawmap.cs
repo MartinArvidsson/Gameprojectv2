@@ -9,12 +9,16 @@ namespace Gameproject.View
 {
     class Drawmap
     {
+        private Rectangle rect;
+        private List<Rectangle> Collisonobjects = new List<Rectangle>();
+        private bool runonce = true;
+
         public void Drawlevel(int [,] map,List<Texture2D> maptextures,SpriteBatch spritebatch, Camera camera)
         {
             float tilesize = camera.scaledgame();
             float scalegame = camera.Scale(0.1f, tilesize);
             tilesize *= scalegame;
-
+            spritebatch.Begin();
             for (int x = 0; x < map.GetLength(1); x++)
             {
                 for(int y = 0; y < map.GetLength(0); y++)
@@ -25,12 +29,26 @@ namespace Gameproject.View
                         continue;
                     }
                     Texture2D _texture = maptextures[texture];
-                    spritebatch.Draw(_texture, new Rectangle(x * (int)tilesize, y * (int)tilesize, (int)tilesize, (int)tilesize), Color.White);
+                    rect =  new Rectangle(x * (int)tilesize, y * (int)tilesize, (int)tilesize, (int)tilesize);
                     
+                    if (runonce == true)
+                    {
+                        if (_texture == maptextures[1])
+                        {
+                            Collisonobjects.Add(rect);
+                        }
+                    }
+                    spritebatch.Draw(_texture,rect, Color.White);
                 }
             }
-            
-
+            runonce = false;
+            spritebatch.End();
         }
+
+        public List<Rectangle> ReturnCollisonlist()
+        {
+            return Collisonobjects;
+        }
+
     }
 }

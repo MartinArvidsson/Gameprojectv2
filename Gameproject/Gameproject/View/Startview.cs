@@ -58,14 +58,21 @@ namespace Gameproject.View
             map = lvlone.getmap();
             totalballs = ballsim.getballs();
 
+            
+
         }
 
-        public void Draw(float elapsedtime)
+        public void Draw()
         {
-            spritebatch.Begin(SpriteSortMode.FrontToBack);
-            drawmap.Drawlevel(map,maptextures,spritebatch, camera);
-            drawballs.drawallballs(totalballs, camera, balltexture, spritebatch, ballcenter);
-            spritebatch.End();
+            //spritebatch.Begin(SpriteSortMode.FrontToBack);
+                drawmap.Drawlevel(map, maptextures, spritebatch, camera);
+                drawballs.drawallballs(totalballs, camera, balltexture, spritebatch, ballcenter);
+            //spritebatch.End();
+        }
+
+        public List<Texture2D> ReturnedTextures()
+        {
+            return maptextures;
         }
     }
 }

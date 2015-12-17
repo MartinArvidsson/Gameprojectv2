@@ -3,6 +3,7 @@ using Gameproject.View;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 
 namespace Gameproject.Controller
@@ -17,12 +18,18 @@ namespace Gameproject.Controller
         private Camera camera = new Camera();
         BallSimulation ballsim;
         private Startview startview;
+        private Drawmap drawmap = new Drawmap();
+        LevelOne lvlone = new LevelOne();
+        private int[,] map;
+        private List<Rectangle> Ballcollisions = new List<Rectangle>();
+        private List<Vector4> convertedcollison = new List<Vector4>();
+        private List<Texture2D> textures = new List<Texture2D>();
 
         public Applicationcontroller()
         {
             graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferHeight = 800;
-            graphics.PreferredBackBufferWidth = 800;
+            graphics.PreferredBackBufferHeight =600;
+            graphics.PreferredBackBufferWidth = 600;
             graphics.IsFullScreen = false;
             IsMouseVisible = true;
             Content.RootDirectory = "Content";
@@ -51,7 +58,11 @@ namespace Gameproject.Controller
             spriteBatch = new SpriteBatch(GraphicsDevice);
             ballsim = new BallSimulation();
             startview = new Startview(Content, camera, spriteBatch, ballsim, graphics);
-            // Create a new SpriteBatch, which can be used to draw textures.
+
+            map = lvlone.getmap();
+            textures = startview.ReturnedTextures();
+            drawmap.Drawlevel(map, textures, spriteBatch, camera);
+            
             // TODO: use this.Content to load your game content here
         }
 
@@ -75,7 +86,25 @@ namespace Gameproject.Controller
             {
                 Exit();
             }
-            ballsim.UpdateBall((float)gameTime.ElapsedGameTime.TotalSeconds);
+            if(Keyboard.GetState().IsKeyDown(Keys.R))
+            {
+                startview = new Startview(Content, camera, spriteBatch, ballsim, graphics);
+            }
+            
+            
+            Ballcollisions = drawmap.ReturnCollisonlist();
+            convertedcollison = new List<Vector4>();
+            foreach(Rectangle rect in Ballcollisions)
+            {
+                Vector2 convertedcoords = new Vector2(rect.X, rect.Y);
+                Vector2 convertedsize = new Vector2(rect.Width, rect.Height);
+                convertedcoords = camera.convertologicalcoords(convertedcoords);
+                convertedsize = camera.convertologicalcoords(convertedsize);
+
+                convertedcollison.Add(new Vector4(convertedcoords.X, convertedcoords.Y, convertedsize.X, convertedsize.Y));
+            }
+            ballsim.UpdateBall((float)gameTime.ElapsedGameTime.TotalSeconds, convertedcollison);
+
             base.Update(gameTime);
         }
 
@@ -88,7 +117,7 @@ namespace Gameproject.Controller
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            startview.Draw((float)gameTime.ElapsedGameTime.TotalSeconds);
+            startview.Draw();
 
             base.Draw(gameTime);
         }

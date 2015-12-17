@@ -12,16 +12,18 @@ namespace Gameproject.View
     {
         public void drawallballs(List<Ball> totalballs,Camera camera,Texture2D balltexture,SpriteBatch spritebatch,Vector2 ballcenter)
         {
+            spritebatch.Begin();
             foreach (Ball ball in totalballs)
             {
                 Vector2 currentballpos = ball.getballpos;
 
                 float scale = camera.Scale(ball.getballradius * 2, balltexture.Width);
-
-                var ballvisualpos = camera.Converttovisualcoords(currentballpos, scale);
+                //, scale
+                var ballvisualpos = camera.Converttovisualcoords(currentballpos);
 
                 spritebatch.Draw(balltexture, ballvisualpos, null, Color.White, 0, ballcenter, scale, SpriteEffects.None, 1f);
             }
+            spritebatch.End();
         }
     }
 }

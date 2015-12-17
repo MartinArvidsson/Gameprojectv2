@@ -29,8 +29,8 @@ namespace Gameproject.View
                 fieldsize = height;
             }
         }
-
-        public Vector2 Converttovisualcoords(Vector2 coords, float scale) //gamecoords to visualcoords
+        //, float scale
+        public Vector2 Converttovisualcoords(Vector2 coords) //gamecoords to visualcoords
         {
             float visualX = (coords.X * fieldsize);
             float visualY = (coords.Y * fieldsize);

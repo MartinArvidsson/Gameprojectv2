@@ -49,25 +49,19 @@ namespace Gameproject.Model
         }
 
         //Makes velocity the opposite of what it was since it hit a wall and needs to turn, otherwhise it keeps going in same direction.
-        public void setballVelocityX() //Sets a new velocity on X
+        public void setballVelocityX(int dir) //Sets a new velocity on X
         {
-            BallVelocity.X = -BallVelocity.X;
-            float randomY = (float)rand.NextDouble();
-            randomY = randomY * ((float)rand.NextDouble());
-            if (randomY >= minspeed && randomY <= maxspeed)
+            if ((BallVelocity.X > 0 && dir < 0) || (BallVelocity.X < 0 && dir > 0))
             {
-                BallVelocity.Y = randomY;
+                BallVelocity.X = -BallVelocity.X;
             }
         }
 
-        public void setballVelocityY() //Sets a new Velocity on Y 
+        public void setballVelocityY(int dir) //Sets a new Velocity on Y 
         {
-            BallVelocity.Y = -BallVelocity.Y;
-            float randomX = (float)rand.NextDouble();
-            randomX = randomX * ((float)rand.NextDouble());
-            if (randomX >= minspeed && randomX <= maxspeed)
+            if ((BallVelocity.Y > 0 && dir < 0) || (BallVelocity.Y < 0 && dir > 0))
             {
-                BallVelocity.X = randomX;
+                BallVelocity.Y = -BallVelocity.Y;
             }
         }
     }
