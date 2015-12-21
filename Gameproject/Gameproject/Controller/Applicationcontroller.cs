@@ -13,23 +13,28 @@ namespace Gameproject.Controller
     /// </summary>
     public class Applicationcontroller : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        private GraphicsDeviceManager graphics;
+        private SpriteBatch spriteBatch;
         private Camera camera = new Camera();
-        BallSimulation ballsim;
+        private BallSimulation ballsim;
+        private Playersimulation playersim;
         private Startview startview;
         private Drawmap drawmap = new Drawmap();
-        LevelOne lvlone = new LevelOne();
+        private LevelOne lvlone = new LevelOne();
         private int[,] map;
         private List<Rectangle> Ballcollisions = new List<Rectangle>();
-        private List<Vector4> convertedcollison = new List<Vector4>();
+        private List<Vector4> convertedballcollison;
+        private List<Rectangle> Playercollision = new List<Rectangle>();
+        private List<Vector4> convertedplayercollison;
+
+
         private List<Texture2D> textures = new List<Texture2D>();
 
         public Applicationcontroller()
         {
             graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferHeight =600;
-            graphics.PreferredBackBufferWidth = 600;
+            graphics.PreferredBackBufferHeight =900;
+            graphics.PreferredBackBufferWidth = 900;
             graphics.IsFullScreen = false;
             IsMouseVisible = true;
             Content.RootDirectory = "Content";
@@ -57,8 +62,10 @@ namespace Gameproject.Controller
             camera.SetFieldSize(graphics.GraphicsDevice.Viewport);
             spriteBatch = new SpriteBatch(GraphicsDevice);
             ballsim = new BallSimulation();
-            startview = new Startview(Content, camera, spriteBatch, ballsim, graphics);
+            playersim = new Playersimulation();
+            startview = new Startview(Content, camera, spriteBatch, ballsim, playersim, graphics);
 
+            //Loads the map once when the application starts. Will use update function to call a function in drawmap that allows me to place new tiles..
             map = lvlone.getmap();
             textures = startview.ReturnedTextures();
             drawmap.Drawlevel(map, textures, spriteBatch, camera);
@@ -82,18 +89,16 @@ namespace Gameproject.Controller
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            var buttonclicked = Keyboard.GetState();
+            if (buttonclicked.IsKeyDown(Keys.Escape))
             {
                 Exit();
             }
-            if(Keyboard.GetState().IsKeyDown(Keys.R))
-            {
-                startview = new Startview(Content, camera, spriteBatch, ballsim, graphics);
-            }
             
-            
-            Ballcollisions = drawmap.ReturnCollisonlist();
-            convertedcollison = new List<Vector4>();
+            //Ballupdating
+            Ballcollisions = drawmap.Returnballcollisions();
+            convertedballcollison = new List<Vector4>();
+
             foreach(Rectangle rect in Ballcollisions)
             {
                 Vector2 convertedcoords = new Vector2(rect.X, rect.Y);
@@ -101,9 +106,31 @@ namespace Gameproject.Controller
                 convertedcoords = camera.convertologicalcoords(convertedcoords);
                 convertedsize = camera.convertologicalcoords(convertedsize);
 
-                convertedcollison.Add(new Vector4(convertedcoords.X, convertedcoords.Y, convertedsize.X, convertedsize.Y));
+                convertedballcollison.Add(new Vector4(convertedcoords.X, convertedcoords.Y, convertedsize.X, convertedsize.Y));
             }
-            ballsim.UpdateBall((float)gameTime.ElapsedGameTime.TotalSeconds, convertedcollison);
+
+            ballsim.UpdateBall((float)gameTime.ElapsedGameTime.TotalSeconds, convertedballcollison);
+
+            //Playerupdating
+            Playercollision = drawmap.Returnplayercollisions();
+            convertedplayercollison = new List<Vector4>();
+
+            foreach (Rectangle rect in Playercollision)
+            {
+                Vector2 _convertedcoords = new Vector2(rect.X, rect.Y);
+                Vector2 _convertedsize = new Vector2(rect.Width, rect.Height);
+                _convertedcoords = camera.convertologicalcoords(_convertedcoords);
+                _convertedsize = camera.convertologicalcoords(_convertedsize);
+
+                convertedplayercollison.Add(new Vector4(_convertedcoords.X, _convertedcoords.Y, _convertedsize.X, _convertedsize.Y));
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Up) || Keyboard.GetState().IsKeyDown(Keys.Down) ||
+                Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.Left))
+            {
+                //Playermovements
+                playersim.UpdatePlayer(buttonclicked, convertedplayercollison);
+            }
 
             base.Update(gameTime);
         }
@@ -115,10 +142,8 @@ namespace Gameproject.Controller
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
             // TODO: Add your drawing code here
             startview.Draw();
-
             base.Draw(gameTime);
         }
     }

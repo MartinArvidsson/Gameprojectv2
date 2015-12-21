@@ -10,7 +10,10 @@ namespace Gameproject.View
     class Drawmap
     {
         private Rectangle rect;
-        private List<Rectangle> Collisonobjects = new List<Rectangle>();
+        private List<Rectangle> Playertiles = new List<Rectangle>();
+        private List<Rectangle> Balltiles = new List<Rectangle>();
+        private List<Rectangle> Playercreatingtiles = new List<Rectangle>();
+
         private bool runonce = true;
 
         public void Drawlevel(int [,] map,List<Texture2D> maptextures,SpriteBatch spritebatch, Camera camera)
@@ -35,7 +38,17 @@ namespace Gameproject.View
                     {
                         if (_texture == maptextures[1])
                         {
-                            Collisonobjects.Add(rect);
+                            Playertiles.Add(rect);
+                        }
+
+                        if(_texture == maptextures[0])
+                        {
+                            Balltiles.Add(rect);
+                        }
+
+                        else
+                        {
+                            Playercreatingtiles.Add(rect);
                         }
                     }
                     spritebatch.Draw(_texture,rect, Color.White);
@@ -45,9 +58,20 @@ namespace Gameproject.View
             spritebatch.End();
         }
 
-        public List<Rectangle> ReturnCollisonlist()
+        public List<Rectangle> Returnballcollisions()
         {
-            return Collisonobjects;
+            return Playertiles;
+        }
+
+
+        public List<Rectangle> Returnplayercollisions()
+        {
+            return Balltiles;
+        }
+
+        public List<Rectangle> Returncreatingtiles()
+        {
+            return Playercreatingtiles;
         }
 
     }
