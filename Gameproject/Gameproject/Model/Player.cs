@@ -29,7 +29,7 @@ namespace Gameproject.Model
                 }
                 else
                 {
-                    velocity.Y = (movementspeed.Y);
+                    velocity.Y = (movementspeed.Y * 4);
                 }
             }
             if (key.IsKeyDown(Keys.Down) && !key.IsKeyDown(Keys.Right) && !key.IsKeyDown(Keys.Left) && !key.IsKeyDown(Keys.Up))
@@ -40,7 +40,7 @@ namespace Gameproject.Model
                 }
                 else
                 {
-                    velocity.Y = -movementspeed.Y;
+                    velocity.Y =- (movementspeed.Y * 4);
                 }
             }
             if (key.IsKeyDown(Keys.Right) && !key.IsKeyDown(Keys.Up) && !key.IsKeyDown(Keys.Left) && !key.IsKeyDown(Keys.Down))
@@ -51,7 +51,7 @@ namespace Gameproject.Model
                 }
                 else
                 {
-                    velocity.X = -movementspeed.X;
+                    velocity.X =- (movementspeed.X * 4);
                 }
             }
             if (key.IsKeyDown(Keys.Left) && !key.IsKeyDown(Keys.Right) && !key.IsKeyDown(Keys.Up) && !key.IsKeyDown(Keys.Down))
@@ -62,7 +62,7 @@ namespace Gameproject.Model
                 }
                 else
                 {
-                    velocity.X = movementspeed.X;
+                    velocity.X = (movementspeed.X * 4);
                 }
             }
 

@@ -26,6 +26,8 @@ namespace Gameproject.Controller
         private List<Vector4> convertedballcollison;
         private List<Rectangle> Playercollision = new List<Rectangle>();
         private List<Vector4> convertedplayercollison;
+        private List<Vector2> playercreatedtiles = new List<Vector2>();
+        private List<Vector2> convertedplayercreatedtiles;
 
 
         private List<Texture2D> textures = new List<Texture2D>();
@@ -90,6 +92,7 @@ namespace Gameproject.Controller
         protected override void Update(GameTime gameTime)
         {
             var buttonclicked = Keyboard.GetState();
+
             if (buttonclicked.IsKeyDown(Keys.Escape))
             {
                 Exit();
@@ -131,6 +134,15 @@ namespace Gameproject.Controller
                 //Playermovements
                 playersim.UpdatePlayer(buttonclicked, convertedplayercollison);
             }
+
+            //Mapupdating
+            playercreatedtiles = playersim.getplayercreatedtiles();
+            convertedplayercreatedtiles = new List<Vector2>();
+            foreach (Vector2 vector in playercreatedtiles)
+            {
+                convertedplayercreatedtiles.Add(camera.Converttovisualcoords(vector));
+            }
+            drawmap.updatemap(convertedplayercreatedtiles);
 
             base.Update(gameTime);
         }
