@@ -23,7 +23,7 @@ namespace Gameproject.View
         private GraphicsDeviceManager graphics;
 
         private Drawballs drawballs = new Drawballs();
-        private Drawmap drawmap = new Drawmap();
+        private Drawmap drawmap;
         private DrawPlayer drawplayer = new DrawPlayer();
         private Player player;
 
@@ -45,13 +45,14 @@ namespace Gameproject.View
         private List<Texture2D> maptextures = new List<Texture2D>();
         private List<Ball> totalballs = new List<Ball>();
 
-        public Startview(ContentManager _content, Camera _camera, SpriteBatch _spritebatch, BallSimulation _ballsim,Playersimulation _playersim, GraphicsDeviceManager _graphics)
+        public Startview(ContentManager _content, Camera _camera, SpriteBatch _spritebatch, BallSimulation _ballsim,Playersimulation _playersim,Drawmap _drawmap, GraphicsDeviceManager _graphics)
         {
             content = _content; //Camera etc..
             camera = _camera;
             spritebatch = _spritebatch;
             ballsim = _ballsim;
             playersim = _playersim;
+            drawmap = _drawmap;
             graphics = _graphics;
 
             balltexture = content.Load<Texture2D>("BALL"); //Balltexture
@@ -76,6 +77,7 @@ namespace Gameproject.View
         public void Draw()
         {
             drawmap.Drawlevel(map, maptextures, spritebatch, camera); //Draws the map
+            drawmap.Updatelevel(drawmap.Returnplayertilestoadd());
             drawballs.drawallballs(totalballs, camera, balltexture, spritebatch, ballcenter); //Draws the balls
             drawplayer.drawplayer(player, camera, playersprite, spritebatch, playercenter); //Draws the player
         }

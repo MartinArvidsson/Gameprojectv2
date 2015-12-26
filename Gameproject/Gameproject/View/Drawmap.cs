@@ -15,9 +15,9 @@ namespace Gameproject.View
         private List<Rectangle> Balltiles = new List<Rectangle>();
         private List<Rectangle> Playercreatingtiles = new List<Rectangle>();
         private List<Texture2D> Maptextures = new List<Texture2D>();
+        private List<Vector2> Tilesbyplayer = new List<Vector2>();
 
         private int previoustiles;
-        private bool runonce = true;
         private float tilesize;
         private float scalegame;
 
@@ -28,6 +28,7 @@ namespace Gameproject.View
             tilesize = camera.scaledgame();
             scalegame = camera.Scale(0.1f, tilesize);
             tilesize *= scalegame;
+
             spritebatch.Begin();
 
             for (int x = 0; x < map.GetLength(1); x++)
@@ -39,50 +40,88 @@ namespace Gameproject.View
                     {
                         continue;
                     }
+
                     Texture2D _texture = Maptextures[texture];
                     rect =  new Rectangle(x * (int)tilesize, y * (int)tilesize, (int)tilesize, (int)tilesize);
                     
-                    if (runonce == true)
-                    {
-                        if (_texture == Maptextures[1])
-                        {
-                            Playertiles.Add(rect);
-                        }
-
                         if (_texture == Maptextures[0])
                         {
-                            Balltiles.Add(rect);
+                            if (!Balltiles.Contains(rect))
+                            {
+                                Balltiles.Add(rect);
+                            }
                         }
 
-                        else
+                        if (_texture == Maptextures[1])
                         {
-                            Playercreatingtiles.Add(rect);
+                            if (!Playertiles.Contains(rect))
+                            {
+                                Playertiles.Add(rect);
+                            }
                         }
-                    }
                     spritebatch.Draw(_texture,rect, Color.White);
                 }
             }
-            runonce = false;
-
             spritebatch.End();
         }
 
-        public void updatemap(List<Vector2> newtiles)
+        public void Updatelevel(List<Vector2> _Tilesbyplayer)
+        {
+            spritebatch.Begin();
+            foreach (Vector2 newtile in _Tilesbyplayer)
+            {
+                Texture2D _texture = Maptextures[2];
+                rect = new Rectangle((int)newtile.X, (int)newtile.Y, (int)tilesize, (int)tilesize);
+
+                if (!Playercreatingtiles.Contains(rect))
+                {
+                    Playercreatingtiles.Add(rect);
+                }
+                if(Playertiles.Contains(rect))
+                {
+                    Playertiles.Remove(rect);
+                }
+                if(Balltiles.Contains(rect))
+                {
+                    Balltiles.Remove(rect);
+                }
+                spritebatch.Draw(_texture, rect, Color.White);
+            }
+
+            if (Playertiles.Contains(Playercreatingtiles.FirstOrDefault()) && Playertiles.Contains(Playercreatingtiles.LastOrDefault())
+                    && Playercreatingtiles.FirstOrDefault() != Playercreatingtiles.LastOrDefault())
+            {
+                //foreach (Vector2 newtile in _Tilesbyplayer)
+                //{
+                //    Texture2D _texture = Maptextures[1];
+                //    rect = new Rectangle((int)newtile.X, (int)newtile.Y, (int)tilesize, (int)tilesize);
+
+                //    if (Playercreatingtiles.Contains(rect))
+                //    {
+                //        Playercreatingtiles.Remove(rect); 
+                //    }
+                //    if(!Playertiles.Contains(rect))
+                //    {
+                //        Playertiles.Add(rect);
+                //    }
+                //    spritebatch.Draw(_texture, rect, Color.White);
+                //}
+            }
+            spritebatch.End();
+        }
+
+        public void updatedtilestoadd(List<Vector2> newtiles)
         {
             if(previoustiles != newtiles.Count)
             {
-                spritebatch.Begin();
                 previoustiles = newtiles.Count;
-                foreach(Vector2 newtile in newtiles)
-                {
-                    Console.WriteLine(newtile.X);
-                    Texture2D _texture = Maptextures[2];
-                    rect = new Rectangle((int)newtile.X,(int)newtile.Y, (int)tilesize, (int)tilesize);
-
-                    spritebatch.Draw(_texture, rect, Color.White);
-                }
-                spritebatch.End();
+                Tilesbyplayer = newtiles;
             }
+        }
+
+        public List<Vector2> Returnplayertilestoadd()
+        {
+            return Tilesbyplayer;
         }
 
         public List<Rectangle> Returnballcollisions()
@@ -96,10 +135,9 @@ namespace Gameproject.View
             return Balltiles;
         }
 
-        public List<Rectangle> Returncreatingtiles()
+        public List<Rectangle> Returnplayercreatedtiles()
         {
             return Playercreatingtiles;
         }
-
     }
 }

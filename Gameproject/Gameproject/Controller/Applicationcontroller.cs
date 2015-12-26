@@ -19,13 +19,15 @@ namespace Gameproject.Controller
         private BallSimulation ballsim;
         private Playersimulation playersim;
         private Startview startview;
-        private Drawmap drawmap = new Drawmap();
-        private LevelOne lvlone = new LevelOne();
+        private Drawmap drawmap;
+        private LevelOne lvlone;
         private int[,] map;
         private List<Rectangle> Ballcollisions = new List<Rectangle>();
         private List<Vector4> convertedballcollison;
         private List<Rectangle> Playercollision = new List<Rectangle>();
         private List<Vector4> convertedplayercollison;
+        private List<Rectangle> newTiles = new List<Rectangle>();
+        private List<Vector4> convertednewTiles;
         private List<Vector2> playercreatedtiles = new List<Vector2>();
         private List<Vector2> convertedplayercreatedtiles;
 
@@ -65,7 +67,10 @@ namespace Gameproject.Controller
             spriteBatch = new SpriteBatch(GraphicsDevice);
             ballsim = new BallSimulation();
             playersim = new Playersimulation();
-            startview = new Startview(Content, camera, spriteBatch, ballsim, playersim, graphics);
+            drawmap = new Drawmap();
+            lvlone = new LevelOne();
+
+            startview = new Startview(Content, camera, spriteBatch, ballsim, playersim,drawmap, graphics);
 
             //Loads the map once when the application starts. Will use update function to call a function in drawmap that allows me to place new tiles..
             map = lvlone.getmap();
@@ -100,8 +105,9 @@ namespace Gameproject.Controller
             
             //Ballupdating
             Ballcollisions = drawmap.Returnballcollisions();
+            newTiles = drawmap.Returnplayercreatedtiles();
             convertedballcollison = new List<Vector4>();
-
+            convertednewTiles = new List<Vector4>();
             foreach(Rectangle rect in Ballcollisions)
             {
                 Vector2 convertedcoords = new Vector2(rect.X, rect.Y);
@@ -112,7 +118,17 @@ namespace Gameproject.Controller
                 convertedballcollison.Add(new Vector4(convertedcoords.X, convertedcoords.Y, convertedsize.X, convertedsize.Y));
             }
 
-            ballsim.UpdateBall((float)gameTime.ElapsedGameTime.TotalSeconds, convertedballcollison);
+            foreach (Rectangle rect in newTiles)
+            {
+                Vector2 convertedcoords = new Vector2(rect.X, rect.Y);
+                Vector2 convertedsize = new Vector2(rect.Width, rect.Height);
+                convertedcoords = camera.convertologicalcoords(convertedcoords);
+                convertedsize = camera.convertologicalcoords(convertedsize);
+
+                convertednewTiles.Add(new Vector4(convertedcoords.X, convertedcoords.Y, convertedsize.X, convertedsize.Y));
+            }
+
+            ballsim.UpdateBall((float)gameTime.ElapsedGameTime.TotalSeconds, convertedballcollison, convertednewTiles);
 
             //Playerupdating
             Playercollision = drawmap.Returnplayercollisions();
@@ -132,7 +148,7 @@ namespace Gameproject.Controller
                 Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.Left))
             {
                 //Playermovements
-                playersim.UpdatePlayer(buttonclicked, convertedplayercollison);
+                playersim.UpdatePlayer(buttonclicked, convertedplayercollison, convertedballcollison);
             }
 
             //Mapupdating
@@ -142,7 +158,7 @@ namespace Gameproject.Controller
             {
                 convertedplayercreatedtiles.Add(camera.Converttovisualcoords(vector));
             }
-            drawmap.updatemap(convertedplayercreatedtiles);
+            drawmap.updatedtilestoadd(convertedplayercreatedtiles);
 
             base.Update(gameTime);
         }
@@ -154,7 +170,6 @@ namespace Gameproject.Controller
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            // TODO: Add your drawing code here
             startview.Draw();
             base.Draw(gameTime);
         }

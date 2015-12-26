@@ -13,14 +13,14 @@ namespace Gameproject.Model
         Random rand = new Random();
         private List<Vector2> playercreatedtiles = new List<Vector2>();
 
-        public void UpdatePlayer(KeyboardState key,List<Vector4> collisons)
+        public void UpdatePlayer(KeyboardState key,List<Vector4> playercollisons,List<Vector4> ballcollision)
         {
             player.updatecurrentpos(key);
-            hitwall(player, collisons);
+            hitwall(player, playercollisons,ballcollision);
         }
-        public void hitwall(Player player,List<Vector4> collisions)
+        public void hitwall(Player player, List<Vector4> playercollisons, List<Vector4> ballcollision)
         {
-            foreach (Vector4 vector in collisions)
+            foreach (Vector4 vector in ballcollision)
             {
                 int side;
 
@@ -32,9 +32,21 @@ namespace Gameproject.Model
                     {
                         playercreatedtiles.Add(newtile);
                     }
-                    //Om spelaren krockar med en ruta, skicka kollisionsobjetets kordinater, (Vector4) till en return, som kontrollern använder för att skicka in i update map
-                    //Där den nya map:en ritas ut med positionen som spelaren var på som ljusblå ruta, spara tidigare rutan för annars rensas listan efter en loop och bara
-                    //Rutan spelaren står på blir ljusblå. alla rutor som är besökta ska vara ljusblåa.
+                }
+            }
+            
+            foreach (Vector4 vector in playercollisons)
+            {
+                int side;
+
+                if (SphereIntersectRectangle(player.getplayerpos, player.getplayerradius, vector, out side))
+                {
+                    Vector2 newtile = new Vector2(vector.X, vector.Y);
+
+                    if (!playercreatedtiles.Contains(newtile))
+                    {
+                        playercreatedtiles.Add(newtile);
+                    }
                 }
             }
         }

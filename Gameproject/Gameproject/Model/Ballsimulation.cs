@@ -21,19 +21,19 @@ namespace Gameproject.Model
             }
         }
 
-        public void UpdateBall(float Elapsedtime,List<Vector4> collisons)
+        public void UpdateBall(float Elapsedtime,List<Vector4> playercollisons,List<Vector4> newplayercollisions)
         {
             foreach (Ball ball in balls)
             {
                 ball.updatecurrentpos(Elapsedtime);
-                hitwall(ball, collisons);
+                hitwall(ball, playercollisons, newplayercollisions);
             }
         }
-        public void hitwall(Ball ball,List<Vector4> collisions)
+        public void hitwall(Ball ball, List<Vector4> playercollisons, List<Vector4> newplayercollisions)
         {
             //Console.WriteLine(ball.BallPos);
             //Balls goes between 0.0 and 1.1
-            foreach (Vector4 vector in collisions)
+            foreach (Vector4 vector in playercollisons)
             {
                 //Console.WriteLine(vector);
 
@@ -57,13 +57,33 @@ namespace Gameproject.Model
                             break;
                     }
                 }
+            }
 
-                /*
-                if ((ball.BallPos.Y + ball.getballradius) > vector.Y || (ball.BallPos.Y - ball.getballradius) < 1) //If ball bounces ^ v
+            foreach (Vector4 vector in newplayercollisions)
+            {
+                //Console.WriteLine(vector);
+
+                int side;
+
+                if (SphereIntersectRectangle(ball.getballpos, ball.getballradius, vector, out side))
                 {
-                    ball.setballVelocityY();
-                }   
-                 * */
+                    Console.WriteLine("AJAJ"); //Spelaren ska dö här..
+                    switch (side)
+                    {
+                        case 1:
+                            ball.setballVelocityX(1);
+                            break;
+                        case -1:
+                            ball.setballVelocityX(-1);
+                            break;
+                        case 2:
+                            ball.setballVelocityY(1);
+                            break;
+                        case -2:
+                            ball.setballVelocityY(-1);
+                            break;
+                    }
+                }
             }
         }
 
