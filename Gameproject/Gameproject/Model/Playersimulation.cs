@@ -13,42 +13,51 @@ namespace Gameproject.Model
         Random rand = new Random();
         private List<Vector2> playercreatedtiles = new List<Vector2>();
 
-        public void UpdatePlayer(KeyboardState key,List<Vector4> playercollisons,List<Vector4> ballcollision)
+        public void UpdatePlayer(KeyboardState key, List<Vector4> playercollisons, List<Vector4> ballcollision, bool finishedcreating)
         {
             player.updatecurrentpos(key);
-            hitwall(player, playercollisons,ballcollision);
+            hitwall(player, playercollisons, ballcollision, finishedcreating);
         }
-        public void hitwall(Player player, List<Vector4> playercollisons, List<Vector4> ballcollision)
+        public void hitwall(Player player, List<Vector4> playercollisons, List<Vector4> ballcollision, bool finishedcreating)
         {
-            foreach (Vector4 vector in ballcollision)
+            if(finishedcreating == true)
             {
-                int side;
-
-                if (SphereIntersectRectangle(player.getplayerpos, player.getplayerradius, vector, out side))
+                playercreatedtiles.Clear();
+            }
+            else
+            {
+                //Tiles  in ballarea
+                foreach (Vector4 vector in ballcollision)
                 {
-                    Vector2 newtile = new Vector2(vector.X, vector.Y);
+                    int side;
 
-                    if (!playercreatedtiles.Contains(newtile))
+                    if (SphereIntersectRectangle(player.getplayerpos, player.getplayerradius, vector, out side))
                     {
-                        playercreatedtiles.Add(newtile);
+                        Vector2 newtile = new Vector2(vector.X, vector.Y);
+
+                        if (!playercreatedtiles.Contains(newtile) && finishedcreating == false)
+                        {
+                            playercreatedtiles.Add(newtile);
+                        }
+                    }
+                }
+                //Outer ring of tiles/ Playerarea
+                foreach (Vector4 vector in playercollisons)
+                {
+                    int side;
+
+                    if (SphereIntersectRectangle(player.getplayerpos, player.getplayerradius, vector, out side))
+                    {
+                        Vector2 newtile = new Vector2(vector.X, vector.Y);
+
+                        if (!playercreatedtiles.Contains(newtile) && finishedcreating == false)
+                        {
+                            playercreatedtiles.Add(newtile);
+                        }
                     }
                 }
             }
             
-            foreach (Vector4 vector in playercollisons)
-            {
-                int side;
-
-                if (SphereIntersectRectangle(player.getplayerpos, player.getplayerradius, vector, out side))
-                {
-                    Vector2 newtile = new Vector2(vector.X, vector.Y);
-
-                    if (!playercreatedtiles.Contains(newtile))
-                    {
-                        playercreatedtiles.Add(newtile);
-                    }
-                }
-            }
         }
 
         private bool SphereIntersectRectangle(Vector2 pos, float radius, Vector4 rect, out int side)

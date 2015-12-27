@@ -21,6 +21,8 @@ namespace Gameproject.View
         private float tilesize;
         private float scalegame;
 
+        private bool finishedcreating = false;
+
         public void Drawlevel(int [,] map,List<Texture2D> maptextures,SpriteBatch _spritebatch, Camera camera)
         {
             spritebatch = _spritebatch;
@@ -65,6 +67,20 @@ namespace Gameproject.View
             spritebatch.End();
         }
 
+        public void updatedtilestoadd(List<Vector2> newtiles)
+        {
+            if (previoustiles != newtiles.Count)
+            {
+                previoustiles = newtiles.Count;
+                Tilesbyplayer = newtiles;
+            }
+        }
+
+        public List<Vector2> Returnplayertilestoadd()
+        {
+            return Tilesbyplayer;
+        }
+
         public void Updatelevel(List<Vector2> _Tilesbyplayer)
         {
             spritebatch.Begin();
@@ -77,51 +93,49 @@ namespace Gameproject.View
                 {
                     Playercreatingtiles.Add(rect);
                 }
-                if(Playertiles.Contains(rect))
-                {
-                    Playertiles.Remove(rect);
-                }
-                if(Balltiles.Contains(rect))
+                if (Balltiles.Contains(rect))
                 {
                     Balltiles.Remove(rect);
                 }
                 spritebatch.Draw(_texture, rect, Color.White);
             }
-
-            if (Playertiles.Contains(Playercreatingtiles.FirstOrDefault()) && Playertiles.Contains(Playercreatingtiles.LastOrDefault())
-                    && Playercreatingtiles.FirstOrDefault() != Playercreatingtiles.LastOrDefault())
-            {
-                //foreach (Vector2 newtile in _Tilesbyplayer)
-                //{
-                //    Texture2D _texture = Maptextures[1];
-                //    rect = new Rectangle((int)newtile.X, (int)newtile.Y, (int)tilesize, (int)tilesize);
-
-                //    if (Playercreatingtiles.Contains(rect))
-                //    {
-                //        Playercreatingtiles.Remove(rect); 
-                //    }
-                //    if(!Playertiles.Contains(rect))
-                //    {
-                //        Playertiles.Add(rect);
-                //    }
-                //    spritebatch.Draw(_texture, rect, Color.White);
-                //}
-            }
             spritebatch.End();
-        }
-
-        public void updatedtilestoadd(List<Vector2> newtiles)
-        {
-            if(previoustiles != newtiles.Count)
+            //Lyckas med att ta bort playercreatingtiles så att den blir 0.
+            if(Playercreatingtiles.Count > 0 && _Tilesbyplayer.Count != 0)
             {
-                previoustiles = newtiles.Count;
-                Tilesbyplayer = newtiles;
+                if (Playertiles.Contains(Playercreatingtiles.First()) && Playertiles.Contains(Playercreatingtiles.Last())
+                && Playercreatingtiles.First() != Playercreatingtiles.Last())
+                {
+                    FinishedUpdating(Playercreatingtiles);
+                }
+            }
+            else
+            {
+                //finishedcreating = false;
+                Playercreatingtiles.Clear();
             }
         }
 
-        public List<Vector2> Returnplayertilestoadd()
+        public void FinishedUpdating(List<Rectangle> _Playercreatingtiles)
         {
-            return Tilesbyplayer;
+            spritebatch.Begin();
+            foreach (Rectangle _newtile in _Playercreatingtiles)
+                {
+                    Texture2D _texture = Maptextures[1];
+                    //Lägger inte till vet inte varför.
+                    if (!Playertiles.Contains(_newtile))
+                    {
+                        Playertiles.Add(_newtile);
+                    }
+                    spritebatch.Draw(_texture, _newtile, Color.White);
+                }
+            spritebatch.End();
+            //finishedcreating = true;
+        }
+
+        public bool Returnfinishedcreating()
+        {
+            return finishedcreating;
         }
 
         public List<Rectangle> Returnballcollisions()

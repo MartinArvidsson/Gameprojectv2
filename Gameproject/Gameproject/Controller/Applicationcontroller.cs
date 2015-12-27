@@ -22,6 +22,7 @@ namespace Gameproject.Controller
         private Drawmap drawmap;
         private LevelOne lvlone;
         private int[,] map;
+        private bool finishedcreating;
         private List<Rectangle> Ballcollisions = new List<Rectangle>();
         private List<Vector4> convertedballcollison;
         private List<Rectangle> Playercollision = new List<Rectangle>();
@@ -132,6 +133,8 @@ namespace Gameproject.Controller
 
             //Playerupdating
             Playercollision = drawmap.Returnplayercollisions();
+            finishedcreating = drawmap.Returnfinishedcreating();
+            //System.Console.WriteLine(finishedcreating+"1"); //Loggar status på bool.
             convertedplayercollison = new List<Vector4>();
 
             foreach (Rectangle rect in Playercollision)
@@ -148,18 +151,19 @@ namespace Gameproject.Controller
                 Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.Left))
             {
                 //Playermovements
-                playersim.UpdatePlayer(buttonclicked, convertedplayercollison, convertedballcollison);
+                playersim.UpdatePlayer(buttonclicked, convertedplayercollison, convertedballcollison, finishedcreating);
             }
 
             //Mapupdating
-            playercreatedtiles = playersim.getplayercreatedtiles();
-            convertedplayercreatedtiles = new List<Vector2>();
-            foreach (Vector2 vector in playercreatedtiles)
-            {
-                convertedplayercreatedtiles.Add(camera.Converttovisualcoords(vector));
-            }
-            drawmap.updatedtilestoadd(convertedplayercreatedtiles);
 
+                playercreatedtiles = playersim.getplayercreatedtiles();
+                //System.Console.WriteLine(playercreatedtiles.Count); //Loggar listans längd.
+                convertedplayercreatedtiles = new List<Vector2>();
+                foreach (Vector2 vector in playercreatedtiles)
+                {
+                    convertedplayercreatedtiles.Add(camera.Converttovisualcoords(vector));
+                }
+                drawmap.updatedtilestoadd(convertedplayercreatedtiles);
             base.Update(gameTime);
         }
 

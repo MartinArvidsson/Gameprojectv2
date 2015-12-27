@@ -65,25 +65,25 @@ namespace Gameproject.Model
 
                 int side;
 
-                if (SphereIntersectRectangle(ball.getballpos, ball.getballradius, vector, out side))
-                {
-                    Console.WriteLine("AJAJ"); //Spelaren ska dö här..
-                    switch (side)
-                    {
-                        case 1:
-                            ball.setballVelocityX(1);
-                            break;
-                        case -1:
-                            ball.setballVelocityX(-1);
-                            break;
-                        case 2:
-                            ball.setballVelocityY(1);
-                            break;
-                        case -2:
-                            ball.setballVelocityY(-1);
-                            break;
-                    }
-                }
+                //if (SphereIntersectRectangle(ball.getballpos, ball.getballradius, vector, out side))
+                //{
+                //    //Spelaren ska dö här..
+                //    switch (side)
+                //    {
+                //        case 1:
+                //            ball.setballVelocityX(1);
+                //            break;
+                //        case -1:
+                //            ball.setballVelocityX(-1);
+                //            break;
+                //        case 2:
+                //            ball.setballVelocityY(1);
+                //            break;
+                //        case -2:
+                //            ball.setballVelocityY(-1);
+                //            break;
+                //    }
+                //}
             }
         }
 
