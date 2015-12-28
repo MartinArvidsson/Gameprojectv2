@@ -84,59 +84,64 @@ namespace Gameproject.View
 
         public void Updatelevel(List<Vector2> _Tilesbyplayer)
         {
+            //Console.WriteLine(_Tilesbyplayer.Count);
+            if (_Tilesbyplayer.Count == 0 && finishedcreating == true)
+            {
+                //finishedcreating = false;
+            }
             spritebatch.Begin();
-
-            //if(_Tilesbyplayer.Count > 0)
-            //{
-            //    var lasttile = _Tilesbyplayer.Last();
-            //    previouslasttile = new Rectangle((int)lasttile.X, (int)lasttile.Y, (int)tilesize, (int)tilesize);
-            //}
-
-            Console.WriteLine(Playercreatingtiles.Count);
             foreach (Vector2 newtile in _Tilesbyplayer)
             {
                 Texture2D _texture = Maptextures[2];
                 rect = new Rectangle((int)newtile.X, (int)newtile.Y, (int)tilesize, (int)tilesize);
-
-                //if (!Playercreatingtiles.Contains(previouslasttile))
-                //{
-                //    Playercreatingtiles.Add(previouslasttile);
-                //}
-                // && !Playertiles.Contains(rect)
                 if (!Playercreatingtiles.Contains(rect))
                 {
-                    Playercreatingtiles.Add(rect);
+                    Playercreatingtiles.Add(rect); //Ljusblåa tiles.
                 }
-                //if (Balltiles.Contains(rect))
-                //{
-                //    Balltiles.Remove(rect);
-                //}
+                if (Balltiles.Contains(rect))
+                {
+                    Balltiles.Remove(rect); //Gråa tiles.
+                }
                 spritebatch.Draw(_texture, rect, Color.White);
             }
-            spritebatch.End();
-            //Lyckas med att ta bort playercreatingtiles så att den blir 0.
+
             if(Playercreatingtiles.Count > 0)
             {
+                previouslasttile = Playercreatingtiles.Last();
+            }
+
+            spritebatch.End();
+            if(Playercreatingtiles.Count > 0)
+            {
+                //BUGGAR DÄRFÖR ATT DEN KOLLAR FÖNSTRET DEN GÅR IN I SEN DEN SOM DEN LÄMNAR, DÄRFÖR BLIR DEN ALLTID BARA TVÅ STOR
+                //Eller inte...
                 if (Playertiles.Contains(Playercreatingtiles.First()) && Playertiles.Contains(Playercreatingtiles.Last())
                 && Playercreatingtiles.First() != Playercreatingtiles.Last())
                 {
+                    //Problem är att eftersom Playercreatingtiles rensas, så rensas också rutorna som ska få mörkblå färg.
+                    //Rektangeln är kvar men spriten försvinner..
                     FinishedUpdating(Playercreatingtiles);
                     Playercreatingtiles.Clear();
+                    finishedcreating = true;
                 }
             }
         }
 
-        public void FinishedUpdating(List<Rectangle> _Playercreatingtiles)
+        public void FinishedUpdating(List<Rectangle> _playercreatedtiles)
         {
-            spritebatch.Begin();
-            foreach (Rectangle _newtile in _Playercreatingtiles)
-            {
-                Texture2D _texture = Maptextures[1];
+            Texture2D _texture = Maptextures[1];
+            foreach (Rectangle _newtile in _playercreatedtiles)
+            {                
                 if (!Playertiles.Contains(_newtile))
                 {
-                    Playertiles.Add(_newtile);
+                    Playertiles.Add(_newtile); //Mörkblåa tiles.
                 }
-                spritebatch.Draw(_texture, _newtile, Color.White);
+            }
+
+            spritebatch.Begin();
+            foreach(Rectangle _rect in Playertiles)
+            {
+                spritebatch.Draw(_texture, _rect, Color.White);
             }
             spritebatch.End();
         }

@@ -22,7 +22,6 @@ namespace Gameproject.Controller
         private Drawmap drawmap;
         private LevelOne lvlone;
         private int[,] map;
-        private bool finishedcreating;
         private List<Rectangle> Ballcollisions = new List<Rectangle>();
         private List<Vector4> convertedballcollison;
         private List<Rectangle> Playercollision = new List<Rectangle>();
@@ -109,6 +108,7 @@ namespace Gameproject.Controller
             newTiles = drawmap.Returnplayercreatedtiles();
             convertedballcollison = new List<Vector4>();
             convertednewTiles = new List<Vector4>();
+
             foreach(Rectangle rect in Ballcollisions)
             {
                 Vector2 convertedcoords = new Vector2(rect.X, rect.Y);
@@ -134,7 +134,7 @@ namespace Gameproject.Controller
             //Playerupdating
             Playercollision = drawmap.Returnplayercollisions();
             convertedplayercollison = new List<Vector4>();
-
+            playersim.SetBool(drawmap.Returnfinishedcreating());
             foreach (Rectangle rect in Playercollision)
             {
                 Vector2 _convertedcoords = new Vector2(rect.X, rect.Y);

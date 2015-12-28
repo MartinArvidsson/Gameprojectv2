@@ -12,6 +12,13 @@ namespace Gameproject.Model
         Player player = new Player();
         Random rand = new Random();
         private List<Vector2> playercreatedtiles = new List<Vector2>();
+        private bool clearlist;
+
+        public void SetBool(bool finishedupdating)
+        {
+            clearlist = finishedupdating;
+            //Console.WriteLine(clearlist);
+        }
 
         public void UpdatePlayer(KeyboardState key, List<Vector4> playercollisons, List<Vector4> ballcollision)
         {
@@ -20,6 +27,11 @@ namespace Gameproject.Model
         }
         public void hitwall(Player player, List<Vector4> playercollisons, List<Vector4> ballcollision)
         {
+            if(clearlist == true)
+            {
+                Console.WriteLine(playercreatedtiles.Count);
+                playercreatedtiles.Clear();
+            }
                 //Tiles  in ballarea
                 foreach (Vector4 vector in ballcollision)
                 {
@@ -87,6 +99,7 @@ namespace Gameproject.Model
         public List<Vector2> getplayercreatedtiles()
         {
             return playercreatedtiles;
+
         }
     }
 }
