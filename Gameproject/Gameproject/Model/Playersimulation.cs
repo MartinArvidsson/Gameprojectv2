@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Gameproject.View;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -11,84 +12,58 @@ namespace Gameproject.Model
     {
         Player player = new Player();
         Random rand = new Random();
-        private List<Vector2> playercreatedtiles = new List<Vector2>();
+        private List<Rectangle> playercreatedtiles = new List<Rectangle>();
+        private List<Rectangle> playercollisions = new List<Rectangle>();
+        private List<Rectangle> ballcollisions = new List<Rectangle>();
         private bool clearlist;
 
         public void SetBool(bool finishedupdating)
         {
             clearlist = finishedupdating;
-            //Console.WriteLine(clearlist);
         }
 
-        public void UpdatePlayer(KeyboardState key, List<Vector4> playercollisons, List<Vector4> ballcollision)
+        public void setcollisions(List<Rectangle> _playercollisons, List<Rectangle> _ballcollisions)
+        {
+            playercollisions = _playercollisons;
+            ballcollisions = _ballcollisions;
+        }
+
+        public void UpdatePlayer(KeyboardState key,Camera camera)
         {
             player.updatecurrentpos(key);
-            hitwall(player, playercollisons, ballcollision);
+            hitwall(player, camera);
         }
-        public void hitwall(Player player, List<Vector4> playercollisons, List<Vector4> ballcollision)
+        public void hitwall(Player player,Camera camera)
         {
             if(clearlist == true)
             {
-                Console.WriteLine(playercreatedtiles.Count);
                 playercreatedtiles.Clear();
             }
                 //Tiles  in ballarea
-                foreach (Vector4 vector in ballcollision)
+            foreach (Rectangle rect in ballcollisions)
+            {
+                if (rect.Contains(camera.Converttovisualcoords(player.getplayerpos)))
                 {
-                    int side;
-
-                    if (SphereIntersectRectangle(player.getplayerpos, player.getplayerradius, vector, out side))
+                    if (!playercreatedtiles.Contains(rect))
                     {
-                        Vector2 newtile = new Vector2(vector.X, vector.Y);
-
-                        if (!playercreatedtiles.Contains(newtile))
-                        {
-                            playercreatedtiles.Add(newtile);
-                        }
+                        Console.WriteLine(rect);
+                        playercreatedtiles.Add(rect);
                     }
                 }
+            }
                 //Outer ring of tiles/ Playerarea
-                foreach (Vector4 vector in playercollisons)
+            foreach (Rectangle rect in playercollisions)
+            {
+                if (rect.Contains(camera.Converttovisualcoords(player.getplayerpos)))
                 {
-                    int side;
-
-                    if (SphereIntersectRectangle(player.getplayerpos, player.getplayerradius, vector, out side))
+                    if (!playercreatedtiles.Contains(rect))
                     {
-                        Vector2 newtile = new Vector2(vector.X, vector.Y);
-
-                        if (!playercreatedtiles.Contains(newtile))
-                        {
-                            playercreatedtiles.Add(newtile);
-                        }
+                        Console.WriteLine(rect);
+                        playercreatedtiles.Add(rect);
                     }
                 }
+            }
             
-        }
-        private bool SphereIntersectRectangle(Vector2 pos, float radius, Vector4 rect, out int side)
-        {
-            side = 0;
-
-            Vector2 centerOfRect = new Vector2(rect.X + rect.Z / 2f, rect.Y + rect.W / 2f);
-
-            Vector2 v = new Vector2(MathHelper.Clamp(pos.X, rect.X, rect.X + rect.Z),
-                                MathHelper.Clamp(pos.Y, rect.Y, rect.Y + rect.W));
-
-            Vector2 direction = pos - v;
-            float distanceSquared = direction.LengthSquared();
-
-            Vector2 centerToCenter = (pos - centerOfRect);
-            centerToCenter.Normalize();
-
-            if (Math.Abs(centerToCenter.X) > Math.Abs(centerToCenter.Y))
-            {
-                side = centerToCenter.X > 0 ? 1 : -1;
-            }
-            else
-            {
-                side = centerToCenter.Y > 0 ? 2 : -2;
-            }
-
-            return ((distanceSquared > 0) && (distanceSquared < radius * radius));
         }
 
         public Player getplayer()
@@ -96,7 +71,7 @@ namespace Gameproject.Model
             return player;
         }
 
-        public List<Vector2> getplayercreatedtiles()
+        public List<Rectangle> getplayercreatedtiles()
         {
             return playercreatedtiles;
 

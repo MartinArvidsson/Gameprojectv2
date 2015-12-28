@@ -109,57 +109,48 @@ namespace Gameproject.Controller
             convertedballcollison = new List<Vector4>();
             convertednewTiles = new List<Vector4>();
 
-            foreach(Rectangle rect in Ballcollisions)
-            {
-                Vector2 convertedcoords = new Vector2(rect.X, rect.Y);
-                Vector2 convertedsize = new Vector2(rect.Width, rect.Height);
-                convertedcoords = camera.convertologicalcoords(convertedcoords);
-                convertedsize = camera.convertologicalcoords(convertedsize);
+                foreach(Rectangle rect in Ballcollisions)
+                {
+                    Vector2 convertedcoords = new Vector2(rect.X, rect.Y);
+                    Vector2 convertedsize = new Vector2(rect.Width, rect.Height);
+                    convertedcoords = camera.convertologicalcoords(convertedcoords);
+                    convertedsize = camera.convertologicalcoords(convertedsize);
 
-                convertedballcollison.Add(new Vector4(convertedcoords.X, convertedcoords.Y, convertedsize.X, convertedsize.Y));
-            }
+                    convertedballcollison.Add(new Vector4(convertedcoords.X, convertedcoords.Y, convertedsize.X, convertedsize.Y));
+                }
 
-            foreach (Rectangle rect in newTiles)
-            {
-                Vector2 convertedcoords = new Vector2(rect.X, rect.Y);
-                Vector2 convertedsize = new Vector2(rect.Width, rect.Height);
-                convertedcoords = camera.convertologicalcoords(convertedcoords);
-                convertedsize = camera.convertologicalcoords(convertedsize);
+                foreach (Rectangle rect in newTiles)
+                {
+                    Vector2 convertedcoords = new Vector2(rect.X, rect.Y);
+                    Vector2 convertedsize = new Vector2(rect.Width, rect.Height);
+                    convertedcoords = camera.convertologicalcoords(convertedcoords);
+                    convertedsize = camera.convertologicalcoords(convertedsize);
 
-                convertednewTiles.Add(new Vector4(convertedcoords.X, convertedcoords.Y, convertedsize.X, convertedsize.Y));
-            }
+                    convertednewTiles.Add(new Vector4(convertedcoords.X, convertedcoords.Y, convertedsize.X, convertedsize.Y));
+                }
 
             ballsim.UpdateBall((float)gameTime.ElapsedGameTime.TotalSeconds, convertedballcollison, convertednewTiles);
 
             //Playerupdating
             Playercollision = drawmap.Returnplayercollisions();
-            convertedplayercollison = new List<Vector4>();
             playersim.SetBool(drawmap.Returnfinishedcreating());
-            foreach (Rectangle rect in Playercollision)
-            {
-                Vector2 _convertedcoords = new Vector2(rect.X, rect.Y);
-                Vector2 _convertedsize = new Vector2(rect.Width, rect.Height);
-                _convertedcoords = camera.convertologicalcoords(_convertedcoords);
-                _convertedsize = camera.convertologicalcoords(_convertedsize);
-
-                convertedplayercollison.Add(new Vector4(_convertedcoords.X, _convertedcoords.Y, _convertedsize.X, _convertedsize.Y));
-            }
+            playersim.setcollisions(Playercollision, Ballcollisions);
 
             if (Keyboard.GetState().IsKeyDown(Keys.Up) || Keyboard.GetState().IsKeyDown(Keys.Down) ||
                 Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.Left))
             {
                 //Playermovements
-                playersim.UpdatePlayer(buttonclicked, convertedplayercollison, convertedballcollison);
+                playersim.UpdatePlayer(buttonclicked,camera);
             }
 
             //Mapupdating
-            playercreatedtiles = playersim.getplayercreatedtiles();
-            convertedplayercreatedtiles = new List<Vector2>();
+            ////playercreatedtiles = playersim.getplayercreatedtiles();
+            //convertedplayercreatedtiles = new List<Vector2>();
             foreach (Vector2 vector in playercreatedtiles)
             {
                 convertedplayercreatedtiles.Add(camera.Converttovisualcoords(vector));
             }
-            drawmap.updatedtilestoadd(convertedplayercreatedtiles);
+            drawmap.updatedtilestoadd(playersim.getplayercreatedtiles());
             base.Update(gameTime);
         }
 

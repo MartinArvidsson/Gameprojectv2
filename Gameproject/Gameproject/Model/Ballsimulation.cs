@@ -31,7 +31,6 @@ namespace Gameproject.Model
         }
         public void hitwall(Ball ball, List<Vector4> playercollisons, List<Vector4> newplayercollisions)
         {
-            //Console.WriteLine(ball.BallPos);
             //Balls goes between 0.0 and 1.1
             foreach (Vector4 vector in playercollisons)
             {

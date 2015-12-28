@@ -15,7 +15,7 @@ namespace Gameproject.View
         private List<Rectangle> Balltiles = new List<Rectangle>();
         private List<Rectangle> Playercreatingtiles = new List<Rectangle>();
         private List<Texture2D> Maptextures = new List<Texture2D>();
-        private List<Vector2> Tilesbyplayer = new List<Vector2>();
+        private List<Rectangle> Tilesbyplayer = new List<Rectangle>();
         private Rectangle previouslasttile;
 
         private int previoustiles;
@@ -68,7 +68,7 @@ namespace Gameproject.View
             spritebatch.End();
         }
 
-        public void updatedtilestoadd(List<Vector2> newtiles)
+        public void updatedtilestoadd(List<Rectangle> newtiles)
         {
             if (previoustiles != newtiles.Count)
             {
@@ -77,36 +77,35 @@ namespace Gameproject.View
             }
         }
 
-        public List<Vector2> Returnplayertilestoadd()
+        public List<Rectangle> Returnplayertilestoadd()
         {
             return Tilesbyplayer;
         }
 
-        public void Updatelevel(List<Vector2> _Tilesbyplayer)
+        public void Updatelevel(List<Rectangle> _Tilesbyplayer)
         {
-            //Console.WriteLine(_Tilesbyplayer.Count);
-            if (_Tilesbyplayer.Count == 0 && finishedcreating == true)
-            {
-                //finishedcreating = false;
+            if (_Tilesbyplayer.Count == 0 && finishedcreating == true) //Om applikationen har körts och reset:at listan en gång. återställ variabeln till false så att listan
+            {                                                          //Inte töms igen förens man har skapat en till bit av "Väggen".
+                finishedcreating = false;
             }
             spritebatch.Begin();
-            foreach (Vector2 newtile in _Tilesbyplayer)
+            foreach (Rectangle rect in _Tilesbyplayer) //Kolla varje objekt i listan enligt hur man har rört sig. och rita ut ljusblåa tiles enligt vägen.
             {
                 Texture2D _texture = Maptextures[2];
-                rect = new Rectangle((int)newtile.X, (int)newtile.Y, (int)tilesize, (int)tilesize);
-                if (!Playercreatingtiles.Contains(rect))
+                if (!Playercreatingtiles.Contains(rect)) //Om inte objektet redan finns i listan med ljusblåa brickor, lägg till den.
                 {
                     Playercreatingtiles.Add(rect); //Ljusblåa tiles.
                 }
-                if (Balltiles.Contains(rect))
+                if (Balltiles.Contains(rect)) //Om objektet redan finns i "bollarean" ta bort det då det nu mera är en vägg.
                 {
                     Balltiles.Remove(rect); //Gråa tiles.
                 }
                 spritebatch.Draw(_texture, rect, Color.White);
+                //Ritar ut den ljusblåa "vägen".
             }
 
-            if(Playercreatingtiles.Count > 0)
-            {
+            if(Playercreatingtiles.Count > 0) //Om man har gått > 0 steg, sätt previouslasttile till sista pos. i listan, används för att veta var man ska starta att rita efter att
+            {                                 //man har lyckats skapa en bit vägg en gång.
                 previouslasttile = Playercreatingtiles.Last();
             }
 
@@ -115,14 +114,18 @@ namespace Gameproject.View
             {
                 //BUGGAR DÄRFÖR ATT DEN KOLLAR FÖNSTRET DEN GÅR IN I SEN DEN SOM DEN LÄMNAR, DÄRFÖR BLIR DEN ALLTID BARA TVÅ STOR
                 //Eller inte...
+
+                //Problem är att eftersom Playercreatingtiles rensas, så rensas också rutorna som ska få mörkblå färg.
+                //Rektangeln är kvar men spriten försvinner..
+
                 if (Playertiles.Contains(Playercreatingtiles.First()) && Playertiles.Contains(Playercreatingtiles.Last())
                 && Playercreatingtiles.First() != Playercreatingtiles.Last())
-                {
-                    //Problem är att eftersom Playercreatingtiles rensas, så rensas också rutorna som ska få mörkblå färg.
-                    //Rektangeln är kvar men spriten försvinner..
+                { //Om man har gått minstonde 2 steg och kraven ovan fylls, skapa mörkblåa brickor av dom ljusblåa.
                     FinishedUpdating(Playercreatingtiles);
-                    Playercreatingtiles.Clear();
-                    finishedcreating = true;
+                    
+                    
+                    //Playercreatingtiles.Clear();
+                    //finishedcreating = true;
                 }
             }
         }
@@ -134,12 +137,12 @@ namespace Gameproject.View
             {                
                 if (!Playertiles.Contains(_newtile))
                 {
-                    Playertiles.Add(_newtile); //Mörkblåa tiles.
+                    Playertiles.Add(_newtile); //Mörkblåa brickor läggs till.
                 }
             }
 
             spritebatch.Begin();
-            foreach(Rectangle _rect in Playertiles)
+            foreach(Rectangle _rect in Playertiles) //Mörkblåa rutor ritas ut.
             {
                 spritebatch.Draw(_texture, _rect, Color.White);
             }
