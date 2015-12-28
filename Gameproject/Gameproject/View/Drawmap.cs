@@ -16,6 +16,7 @@ namespace Gameproject.View
         private List<Rectangle> Playercreatingtiles = new List<Rectangle>();
         private List<Texture2D> Maptextures = new List<Texture2D>();
         private List<Vector2> Tilesbyplayer = new List<Vector2>();
+        private Rectangle previouslasttile;
 
         private int previoustiles;
         private float tilesize;
@@ -84,35 +85,44 @@ namespace Gameproject.View
         public void Updatelevel(List<Vector2> _Tilesbyplayer)
         {
             spritebatch.Begin();
+
+            //if(_Tilesbyplayer.Count > 0)
+            //{
+            //    var lasttile = _Tilesbyplayer.Last();
+            //    previouslasttile = new Rectangle((int)lasttile.X, (int)lasttile.Y, (int)tilesize, (int)tilesize);
+            //}
+
+            Console.WriteLine(Playercreatingtiles.Count);
             foreach (Vector2 newtile in _Tilesbyplayer)
             {
                 Texture2D _texture = Maptextures[2];
                 rect = new Rectangle((int)newtile.X, (int)newtile.Y, (int)tilesize, (int)tilesize);
 
+                //if (!Playercreatingtiles.Contains(previouslasttile))
+                //{
+                //    Playercreatingtiles.Add(previouslasttile);
+                //}
+                // && !Playertiles.Contains(rect)
                 if (!Playercreatingtiles.Contains(rect))
                 {
                     Playercreatingtiles.Add(rect);
                 }
-                if (Balltiles.Contains(rect))
-                {
-                    Balltiles.Remove(rect);
-                }
+                //if (Balltiles.Contains(rect))
+                //{
+                //    Balltiles.Remove(rect);
+                //}
                 spritebatch.Draw(_texture, rect, Color.White);
             }
             spritebatch.End();
             //Lyckas med att ta bort playercreatingtiles så att den blir 0.
-            if(Playercreatingtiles.Count > 0 && _Tilesbyplayer.Count != 0)
+            if(Playercreatingtiles.Count > 0)
             {
                 if (Playertiles.Contains(Playercreatingtiles.First()) && Playertiles.Contains(Playercreatingtiles.Last())
                 && Playercreatingtiles.First() != Playercreatingtiles.Last())
                 {
                     FinishedUpdating(Playercreatingtiles);
+                    Playercreatingtiles.Clear();
                 }
-            }
-            else
-            {
-                //finishedcreating = false;
-                Playercreatingtiles.Clear();
             }
         }
 
@@ -120,17 +130,15 @@ namespace Gameproject.View
         {
             spritebatch.Begin();
             foreach (Rectangle _newtile in _Playercreatingtiles)
+            {
+                Texture2D _texture = Maptextures[1];
+                if (!Playertiles.Contains(_newtile))
                 {
-                    Texture2D _texture = Maptextures[1];
-                    //Lägger inte till vet inte varför.
-                    if (!Playertiles.Contains(_newtile))
-                    {
-                        Playertiles.Add(_newtile);
-                    }
-                    spritebatch.Draw(_texture, _newtile, Color.White);
+                    Playertiles.Add(_newtile);
                 }
+                spritebatch.Draw(_texture, _newtile, Color.White);
+            }
             spritebatch.End();
-            //finishedcreating = true;
         }
 
         public bool Returnfinishedcreating()

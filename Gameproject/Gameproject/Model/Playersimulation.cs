@@ -13,19 +13,13 @@ namespace Gameproject.Model
         Random rand = new Random();
         private List<Vector2> playercreatedtiles = new List<Vector2>();
 
-        public void UpdatePlayer(KeyboardState key, List<Vector4> playercollisons, List<Vector4> ballcollision, bool finishedcreating)
+        public void UpdatePlayer(KeyboardState key, List<Vector4> playercollisons, List<Vector4> ballcollision)
         {
             player.updatecurrentpos(key);
-            hitwall(player, playercollisons, ballcollision, finishedcreating);
+            hitwall(player, playercollisons, ballcollision);
         }
-        public void hitwall(Player player, List<Vector4> playercollisons, List<Vector4> ballcollision, bool finishedcreating)
+        public void hitwall(Player player, List<Vector4> playercollisons, List<Vector4> ballcollision)
         {
-            if(finishedcreating == true)
-            {
-                playercreatedtiles.Clear();
-            }
-            else
-            {
                 //Tiles  in ballarea
                 foreach (Vector4 vector in ballcollision)
                 {
@@ -35,7 +29,7 @@ namespace Gameproject.Model
                     {
                         Vector2 newtile = new Vector2(vector.X, vector.Y);
 
-                        if (!playercreatedtiles.Contains(newtile) && finishedcreating == false)
+                        if (!playercreatedtiles.Contains(newtile))
                         {
                             playercreatedtiles.Add(newtile);
                         }
@@ -50,16 +44,14 @@ namespace Gameproject.Model
                     {
                         Vector2 newtile = new Vector2(vector.X, vector.Y);
 
-                        if (!playercreatedtiles.Contains(newtile) && finishedcreating == false)
+                        if (!playercreatedtiles.Contains(newtile))
                         {
                             playercreatedtiles.Add(newtile);
                         }
                     }
                 }
-            }
             
         }
-
         private bool SphereIntersectRectangle(Vector2 pos, float radius, Vector4 rect, out int side)
         {
             side = 0;
