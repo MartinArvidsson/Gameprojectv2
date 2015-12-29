@@ -135,21 +135,16 @@ namespace Gameproject.Controller
             Playercollision = drawmap.Returnplayercollisions();
             playersim.SetBool(drawmap.Returnfinishedcreating());
             playersim.setcollisions(Playercollision, Ballcollisions);
+            playersim.hitwall(camera);
 
             if (Keyboard.GetState().IsKeyDown(Keys.Up) || Keyboard.GetState().IsKeyDown(Keys.Down) ||
                 Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.Left))
             {
                 //Playermovements
-                playersim.UpdatePlayer(buttonclicked,camera);
+                playersim.UpdatePlayer(buttonclicked);
             }
 
             //Mapupdating
-            ////playercreatedtiles = playersim.getplayercreatedtiles();
-            //convertedplayercreatedtiles = new List<Vector2>();
-            foreach (Vector2 vector in playercreatedtiles)
-            {
-                convertedplayercreatedtiles.Add(camera.Converttovisualcoords(vector));
-            }
             drawmap.updatedtilestoadd(playersim.getplayercreatedtiles());
             base.Update(gameTime);
         }

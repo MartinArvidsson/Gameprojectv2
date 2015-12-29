@@ -28,37 +28,34 @@ namespace Gameproject.Model
             ballcollisions = _ballcollisions;
         }
 
-        public void UpdatePlayer(KeyboardState key,Camera camera)
+        public void UpdatePlayer(KeyboardState key)
         {
             player.updatecurrentpos(key);
-            hitwall(player, camera);
         }
-        public void hitwall(Player player,Camera camera)
+        public void hitwall(Camera camera)
         {
             if(clearlist == true)
             {
                 playercreatedtiles.Clear();
             }
-                //Tiles  in ballarea
+            //Tiles  in ballarea
             foreach (Rectangle rect in ballcollisions)
             {
                 if (rect.Contains(camera.Converttovisualcoords(player.getplayerpos)))
                 {
                     if (!playercreatedtiles.Contains(rect))
                     {
-                        Console.WriteLine(rect);
                         playercreatedtiles.Add(rect);
                     }
                 }
             }
-                //Outer ring of tiles/ Playerarea
+            //Outer ring of tiles/ Playerarea
             foreach (Rectangle rect in playercollisions)
             {
                 if (rect.Contains(camera.Converttovisualcoords(player.getplayerpos)))
                 {
                     if (!playercreatedtiles.Contains(rect))
                     {
-                        Console.WriteLine(rect);
                         playercreatedtiles.Add(rect);
                     }
                 }

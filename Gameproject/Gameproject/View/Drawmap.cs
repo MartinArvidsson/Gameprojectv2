@@ -84,7 +84,7 @@ namespace Gameproject.View
 
         public void Updatelevel(List<Rectangle> _Tilesbyplayer)
         {
-            if (_Tilesbyplayer.Count == 0 && finishedcreating == true) //Om applikationen har körts och reset:at listan en gång. återställ variabeln till false så att listan
+            if (finishedcreating == true) //Om applikationen har körts och reset:at listan en gång. återställ variabeln till false så att listan
             {                                                          //Inte töms igen förens man har skapat en till bit av "Väggen".
                 finishedcreating = false;
             }
@@ -109,7 +109,6 @@ namespace Gameproject.View
                 previouslasttile = Playercreatingtiles.Last();
             }
 
-            spritebatch.End();
             if(Playercreatingtiles.Count > 0)
             {
                 //BUGGAR DÄRFÖR ATT DEN KOLLAR FÖNSTRET DEN GÅR IN I SEN DEN SOM DEN LÄMNAR, DÄRFÖR BLIR DEN ALLTID BARA TVÅ STOR
@@ -122,17 +121,20 @@ namespace Gameproject.View
                 && Playercreatingtiles.First() != Playercreatingtiles.Last())
                 { //Om man har gått minstonde 2 steg och kraven ovan fylls, skapa mörkblåa brickor av dom ljusblåa.
                     FinishedUpdating(Playercreatingtiles);
-                    
-                    
                     //Playercreatingtiles.Clear();
-                    //finishedcreating = true;
+                    finishedcreating = true;
                 }
             }
+            foreach (Rectangle _rect in Playertiles) //Mörkblåa rutor ritas ut.
+            {
+                Texture2D _texture = Maptextures[1];
+                spritebatch.Draw(_texture, _rect, Color.White);
+            }
+            spritebatch.End();
         }
 
         public void FinishedUpdating(List<Rectangle> _playercreatedtiles)
         {
-            Texture2D _texture = Maptextures[1];
             foreach (Rectangle _newtile in _playercreatedtiles)
             {                
                 if (!Playertiles.Contains(_newtile))
@@ -140,13 +142,6 @@ namespace Gameproject.View
                     Playertiles.Add(_newtile); //Mörkblåa brickor läggs till.
                 }
             }
-
-            spritebatch.Begin();
-            foreach(Rectangle _rect in Playertiles) //Mörkblåa rutor ritas ut.
-            {
-                spritebatch.Draw(_texture, _rect, Color.White);
-            }
-            spritebatch.End();
         }
 
         public bool Returnfinishedcreating()
