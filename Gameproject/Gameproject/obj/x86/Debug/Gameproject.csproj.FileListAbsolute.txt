@@ -145,3 +145,5 @@ C:\Users\Martin\Desktop\REPO\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.X
 C:\Users\Martin\Desktop\REPO\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.RawInput.xml
 C:\Users\Martin\Desktop\REPO\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.Direct3D9.xml
 C:\Users\Martin\Desktop\REPO\Gameproject\Gameproject\obj\x86\Debug\Gameproject.csprojResolveAssemblyReference.cache
+C:\Users\Martin\Desktop\REPO\Gameproject\Gameproject\bin\Windows\Debug\Content\Menubackground.png
+C:\Users\Martin\Desktop\REPO\Gameproject\Gameproject\bin\Windows\Debug\Content\playbutton.png

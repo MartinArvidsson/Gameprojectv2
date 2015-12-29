@@ -16,6 +16,10 @@ namespace Gameproject.Controller
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         private Camera camera = new Camera();
+        private Menucontroller menucontroller;
+        private Gamecontroller gamecontroller;
+        private bool hasclickedplay;
+
         private BallSimulation ballsim;
         private Playersimulation playersim;
         private Startview startview;
@@ -25,20 +29,25 @@ namespace Gameproject.Controller
         private List<Rectangle> Ballcollisions = new List<Rectangle>();
         private List<Vector4> convertedballcollison;
         private List<Rectangle> Playercollision = new List<Rectangle>();
-        private List<Vector4> convertedplayercollison;
         private List<Rectangle> newTiles = new List<Rectangle>();
         private List<Vector4> convertednewTiles;
         private List<Vector2> playercreatedtiles = new List<Vector2>();
-        private List<Vector2> convertedplayercreatedtiles;
 
+        enum Gamestate
+        {
+            MainMenu,
+            Playing,
+        }
+
+        Gamestate CurrentGameState = Gamestate.MainMenu;
 
         private List<Texture2D> textures = new List<Texture2D>();
 
         public Applicationcontroller()
         {
             graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferHeight =900;
-            graphics.PreferredBackBufferWidth = 900;
+            graphics.PreferredBackBufferHeight =800;
+            graphics.PreferredBackBufferWidth = 800;
             graphics.IsFullScreen = false;
             IsMouseVisible = true;
             Content.RootDirectory = "Content";
@@ -52,8 +61,9 @@ namespace Gameproject.Controller
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            // TODO: Add your initialization logic here            
             camera.scalegame(graphics);
+            
             base.Initialize();
         }
 
@@ -64,18 +74,28 @@ namespace Gameproject.Controller
         protected override void LoadContent()
         {
             camera.SetFieldSize(graphics.GraphicsDevice.Viewport);
+
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            ballsim = new BallSimulation();
-            playersim = new Playersimulation();
-            drawmap = new Drawmap();
-            lvlone = new LevelOne();
 
-            startview = new Startview(Content, camera, spriteBatch, ballsim, playersim,drawmap, graphics);
+            menucontroller = new Menucontroller(graphics);
+            //gamecontroller = new Gamecontroller(graphics);
 
-            //Loads the map once when the application starts. Will use update function to call a function in drawmap that allows me to place new tiles..
-            map = lvlone.getmap();
-            textures = startview.ReturnedTextures();
-            drawmap.Drawlevel(map, textures, spriteBatch, camera);
+            menucontroller.LoadContent(spriteBatch,Content,camera);
+
+            //gamecontroller.Loadcontent(spriteBatch,Content);
+            
+            //ballsim = new BallSimulation();
+            //playersim = new Playersimulation();
+            
+            //drawmap = new Drawmap();
+            //lvlone = new LevelOne();
+       
+            //startview = new Startview(Content, camera, spriteBatch, ballsim, playersim,drawmap, graphics);
+
+            ////Loads the map once when the application starts. Will use update function to call a function in drawmap that allows me to place new tiles..
+            //map = lvlone.getmap();
+            //textures = startview.ReturnedTextures();
+            //drawmap.Drawlevel(map, textures, spriteBatch, camera);
             
             // TODO: use this.Content to load your game content here
         }
@@ -96,75 +116,96 @@ namespace Gameproject.Controller
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            var buttonclicked = Keyboard.GetState();
-
-            if (playersim.isgameover == true)
+            switch(CurrentGameState)
             {
-                System.Console.WriteLine("ded");
-                //Startmenyn startas för att man dog.
+                case Gamestate.MainMenu:
+                    hasclickedplay = menucontroller.Update();
+
+                    if(hasclickedplay == true)
+                    {
+                        System.Console.WriteLine("hej");
+                        //CurrentGameState = Gamestate.Playing;
+                    }
+                    break;
+
+                case Gamestate.Playing:
+                    if(Keyboard.GetState().IsKeyDown(Keys.Escape))
+                    {
+                        CurrentGameState = Gamestate.MainMenu;
+                    }
+                    break;
             }
 
-            if (drawmap.playerdidwin == true)
-            {
-                //Vinn spelet NYI
-            }
 
-            if (buttonclicked.IsKeyDown(Keys.Escape))
-            {
-                Exit();
-            }
+            //var buttonclicked = Keyboard.GetState();
 
-            if(buttonclicked.IsKeyDown(Keys.P))
-            {
-                //Pausa, NYI
-            }
+            //if (playersim.isgameover == true)
+            //{
+            //    System.Console.WriteLine("ded");
+            //    //Startmenyn startas för att man dog.
+            //}
+
+            //if (drawmap.playerdidwin == true)
+            //{
+            //    //Vinn spelet NYI
+            //}
+
+            //if (buttonclicked.IsKeyDown(Keys.Escape))
+            //{
+            //    Exit();
+            //}
+
+            //if(buttonclicked.IsKeyDown(Keys.P))
+            //{
+            //    //Pausa, NYI
+            //}
 
 
             
-            //Ballupdating
-            Ballcollisions = drawmap.Returnballcollisions();
-            newTiles = drawmap.Returnplayercreatedtiles();
-            convertedballcollison = new List<Vector4>();
-            convertednewTiles = new List<Vector4>();
+            ////Ballupdating
+            //Ballcollisions = drawmap.Returnballcollisions();
+            //newTiles = drawmap.Returnplayercreatedtiles();
+            //convertedballcollison = new List<Vector4>();
+            //convertednewTiles = new List<Vector4>();
 
-                foreach(Rectangle rect in Ballcollisions)
-                {
-                    Vector2 convertedcoords = new Vector2(rect.X, rect.Y);
-                    Vector2 convertedsize = new Vector2(rect.Width, rect.Height);
-                    convertedcoords = camera.convertologicalcoords(convertedcoords);
-                    convertedsize = camera.convertologicalcoords(convertedsize);
+            //    foreach(Rectangle rect in Ballcollisions)
+            //    {
+            //        Vector2 convertedcoords = new Vector2(rect.X, rect.Y);
+            //        Vector2 convertedsize = new Vector2(rect.Width, rect.Height);
+            //        convertedcoords = camera.convertologicalcoords(convertedcoords);
+            //        convertedsize = camera.convertologicalcoords(convertedsize);
 
-                    convertedballcollison.Add(new Vector4(convertedcoords.X, convertedcoords.Y, convertedsize.X, convertedsize.Y));
-                }
+            //        convertedballcollison.Add(new Vector4(convertedcoords.X, convertedcoords.Y, convertedsize.X, convertedsize.Y));
+            //    }
 
-                foreach (Rectangle rect in newTiles)
-                {
-                    Vector2 convertedcoords = new Vector2(rect.X, rect.Y);
-                    Vector2 convertedsize = new Vector2(rect.Width, rect.Height);
-                    convertedcoords = camera.convertologicalcoords(convertedcoords);
-                    convertedsize = camera.convertologicalcoords(convertedsize);
+            //    foreach (Rectangle rect in newTiles)
+            //    {
+            //        Vector2 convertedcoords = new Vector2(rect.X, rect.Y);
+            //        Vector2 convertedsize = new Vector2(rect.Width, rect.Height);
+            //        convertedcoords = camera.convertologicalcoords(convertedcoords);
+            //        convertedsize = camera.convertologicalcoords(convertedsize);
 
-                    convertednewTiles.Add(new Vector4(convertedcoords.X, convertedcoords.Y, convertedsize.X, convertedsize.Y));
-                }
+            //        convertednewTiles.Add(new Vector4(convertedcoords.X, convertedcoords.Y, convertedsize.X, convertedsize.Y));
+            //    }
 
-            ballsim.UpdateBall((float)gameTime.ElapsedGameTime.TotalSeconds, convertedballcollison, convertednewTiles);
+            //ballsim.UpdateBall((float)gameTime.ElapsedGameTime.TotalSeconds, convertedballcollison, convertednewTiles);
 
-            //Playerupdating
-            Playercollision = drawmap.Returnplayercollisions();
-            playersim.SetBool(drawmap.Returnfinishedcreating());
-            playersim.setInt(ballsim.playerbeenhit);
-            playersim.setcollisions(Playercollision, Ballcollisions);
-            playersim.hitwall(camera);
+            ////Playerupdating
+            //Playercollision = drawmap.Returnplayercollisions();
+            //playersim.SetBool(drawmap.Returnfinishedcreating());
+            //playersim.setInt(ballsim.playerbeenhit);
+            //playersim.setcollisions(Playercollision, Ballcollisions);
+            //playersim.hitwall(camera);
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Up) || Keyboard.GetState().IsKeyDown(Keys.Down) ||
-                Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.Left))
-            {
-                //Playermovements
-                playersim.UpdatePlayer(buttonclicked);
-            }
+            //if (Keyboard.GetState().IsKeyDown(Keys.Up) || Keyboard.GetState().IsKeyDown(Keys.Down) ||
+            //    Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.Left))
+            //{
+            //    //Playermovements
+            //    playersim.UpdatePlayer(buttonclicked);
+            //}
 
-            //Mapupdating
-            drawmap.updatedtilestoadd(playersim.getplayercreatedtiles());
+            ////Mapupdating
+            //drawmap.updatedtilestoadd(playersim.getplayercreatedtiles());
             base.Update(gameTime);
         }
 
@@ -175,7 +216,17 @@ namespace Gameproject.Controller
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            startview.Draw();
+
+            switch(CurrentGameState)
+            {
+                case Gamestate.MainMenu:
+                    menucontroller.Draw();
+                    break;
+                case Gamestate.Playing:
+                    //gamecontroller.Draw(spriteBatch, (float)gameTime.ElapsedGameTime.TotalSeconds);
+                    break;
+            }
+            //startview.Draw();
             base.Draw(gameTime);
         }
     }

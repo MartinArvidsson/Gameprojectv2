@@ -13,7 +13,7 @@ namespace Gameproject.Model
         Random rand = new Random();
         private int playerhit;
         
-        int numberofballs = 5;
+        int numberofballs = 3;
         public BallSimulation()
         {
             for (int i = 0; i < numberofballs; i++)

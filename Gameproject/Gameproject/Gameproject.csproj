@@ -42,9 +42,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Controller\Applicationcontroller.cs" />
+    <Compile Include="Controller\Gamecontroller.cs" />
     <Compile Include="Controller\LevelOne.cs" />
     <Compile Include="Controller\LevelThree.cs" />
     <Compile Include="Controller\LevelTwo.cs" />
+    <Compile Include="Controller\Menucontroller.cs" />
     <Compile Include="Model\Ball.cs" />
     <Compile Include="Model\Ballsimulation.cs" />
     <Compile Include="Model\Player.cs" />
@@ -55,6 +57,10 @@
     <Compile Include="View\Drawballs.cs" />
     <Compile Include="View\Drawmap.cs" />
     <Compile Include="View\DrawPlayer.cs" />
+    <Compile Include="View\Menus\Mainmenu.cs" />
+    <Compile Include="View\Menus\Pausemenu.cs" />
+    <Compile Include="View\Menus\Playerlostmenu.cs" />
+    <Compile Include="View\Menus\Playerwonmenu.cs" />
     <Compile Include="View\Startview.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -69,6 +75,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Ballground.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Menubackground.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\playbutton.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Player.png">

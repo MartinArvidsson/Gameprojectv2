@@ -15,6 +15,8 @@ namespace Gameproject.View
         private int height;
         private float scale;
         private float gamescaling;
+
+        float _gamescaling;
         public void SetFieldSize(Viewport board) //If width is bigger than height use it for scaling, otherwhise the other way around
         {
             width = board.Width;
