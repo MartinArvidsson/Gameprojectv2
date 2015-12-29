@@ -11,13 +11,22 @@ namespace Gameproject.Model
     {
         public Vector2 Playerpos,velocity,movementspeed;
         private float Playerradius = 0.03f;
+        private int playerlife = 3;
+        private bool gameover = false;
         public Player()
         {
             Playerpos = new Vector2(0.55f, 0.95f);
             velocity = Vector2.Zero;
-            movementspeed = new Vector2(0.01f, 0.01f);
+            movementspeed = new Vector2(0.008f, 0.008f);
         }
 
+        public void updateplayerlifes(int playerhits)
+        {
+            if(playerhits == playerlife)
+            {
+                gameover = true;
+            }
+        }
         public void updatecurrentpos(KeyboardState key)
         {
             velocity = Vector2.Zero;
@@ -40,7 +49,7 @@ namespace Gameproject.Model
                 }
                 else
                 {
-                    velocity.Y =- (movementspeed.Y * 4);
+                    velocity.Y = -(movementspeed.Y * 4);
                 }
             }
             if (key.IsKeyDown(Keys.Right) && !key.IsKeyDown(Keys.Up) && !key.IsKeyDown(Keys.Left) && !key.IsKeyDown(Keys.Down))
@@ -51,7 +60,7 @@ namespace Gameproject.Model
                 }
                 else
                 {
-                    velocity.X =- (movementspeed.X * 4);
+                    velocity.X = -(movementspeed.X * 4);
                 }
             }
             if (key.IsKeyDown(Keys.Left) && !key.IsKeyDown(Keys.Right) && !key.IsKeyDown(Keys.Up) && !key.IsKeyDown(Keys.Down))
@@ -97,6 +106,14 @@ namespace Gameproject.Model
             }
 
             return true;
+        }
+
+        public bool isgameover
+        {
+            get
+            {
+                return gameover;
+            }
         }
     }
 }

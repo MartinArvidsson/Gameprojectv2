@@ -11,6 +11,7 @@ namespace Gameproject.Model
         private List<Ball> balls = new List<Ball>();
         public Ball ball;
         Random rand = new Random();
+        private int playerhit;
         
         int numberofballs = 5;
         public BallSimulation()
@@ -31,11 +32,10 @@ namespace Gameproject.Model
         }
         public void hitwall(Ball ball, List<Vector4> playercollisons, List<Vector4> newplayercollisions)
         {
+
             //Balls goes between 0.0 and 1.1
             foreach (Vector4 vector in playercollisons)
             {
-                //Console.WriteLine(vector);
-
                 int side;
 
                 if (SphereIntersectRectangle(ball.getballpos, ball.getballradius, vector, out side))
@@ -58,32 +58,30 @@ namespace Gameproject.Model
                 }
             }
 
-            foreach (Vector4 vector in newplayercollisions)
+            foreach (Vector4 vector in newplayercollisions.Skip(1)) //Ignores first pos. since i don't want it to register as a hit when im standing and waiting along the edge.
             {
-                //Console.WriteLine(vector);
+                int side;
 
-                //int side;
+                if (SphereIntersectRectangle(ball.getballpos, ball.getballradius, vector, out side))
+                {
+                    switch (side)
+                    {
+                        case 1:
+                            ball.setballVelocityX(1);
+                            break;
+                        case -1:
+                            ball.setballVelocityX(-1);
+                            break;
+                        case 2:
+                            ball.setballVelocityY(1);
+                            break;
+                        case -2:
+                            ball.setballVelocityY(-1);
+                            break;
+                    }
+                    playerhit += 1;
+                }
 
-                //if (SphereIntersectRectangle(ball.getballpos, ball.getballradius, vector, out side))
-                //{
-                //    //Spelaren ska dö här..
-                //    Console.WriteLine("aj");
-                //    switch (side)
-                //    {
-                //        case 1:
-                //            ball.setballVelocityX(1);
-                //            break;
-                //        case -1:
-                //            ball.setballVelocityX(-1);
-                //            break;
-                //        case 2:
-                //            ball.setballVelocityY(1);
-                //            break;
-                //        case -2:
-                //            ball.setballVelocityY(-1);
-                //            break;
-                //    }
-                //}
             }
         }
 
@@ -117,6 +115,14 @@ namespace Gameproject.Model
         public List<Ball> getballs()
         {
             return balls;
+        }
+
+        public int playerbeenhit
+        {
+            get
+            {
+                return playerhit;
+            }
         }
     }
 }

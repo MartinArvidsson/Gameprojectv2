@@ -16,10 +16,16 @@ namespace Gameproject.Model
         private List<Rectangle> playercollisions = new List<Rectangle>();
         private List<Rectangle> ballcollisions = new List<Rectangle>();
         private bool clearlist;
-
+        private int playerhit;
         public void SetBool(bool finishedupdating)
         {
             clearlist = finishedupdating;
+        }
+
+        public void setInt(int _playerhit)
+        {
+            playerhit = _playerhit;
+            player.updateplayerlifes(playerhit);
         }
 
         public void setcollisions(List<Rectangle> _playercollisons, List<Rectangle> _ballcollisions)
@@ -38,17 +44,7 @@ namespace Gameproject.Model
             {
                 playercreatedtiles.Clear();
             }
-            //Tiles  in ballarea
-            foreach (Rectangle rect in ballcollisions)
-            {
-                if (rect.Contains(camera.Converttovisualcoords(player.getplayerpos)))
-                {
-                    if (!playercreatedtiles.Contains(rect))
-                    {
-                        playercreatedtiles.Add(rect);
-                    }
-                }
-            }
+
             //Outer ring of tiles/ Playerarea
             foreach (Rectangle rect in playercollisions)
             {
@@ -60,7 +56,18 @@ namespace Gameproject.Model
                     }
                 }
             }
-            
+
+            //Tiles  in ballarea
+            foreach (Rectangle rect in ballcollisions)
+            {
+                if (rect.Contains(camera.Converttovisualcoords(player.getplayerpos)))
+                {
+                    if (!playercreatedtiles.Contains(rect))
+                    {
+                        playercreatedtiles.Add(rect);
+                    }
+                }
+            }
         }
 
         public Player getplayer()
@@ -72,6 +79,14 @@ namespace Gameproject.Model
         {
             return playercreatedtiles;
 
+        }
+
+        public bool isgameover
+        {
+            get
+            {
+                return player.isgameover;
+            }
         }
     }
 }

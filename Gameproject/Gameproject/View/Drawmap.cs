@@ -23,6 +23,7 @@ namespace Gameproject.View
         private float scalegame;
 
         private bool finishedcreating = false;
+        private bool playerwon = false;
 
         public void Drawlevel(int [,] map,List<Texture2D> maptextures,SpriteBatch _spritebatch, Camera camera)
         {
@@ -111,17 +112,11 @@ namespace Gameproject.View
 
             if(Playercreatingtiles.Count > 0)
             {
-                //BUGGAR DÄRFÖR ATT DEN KOLLAR FÖNSTRET DEN GÅR IN I SEN DEN SOM DEN LÄMNAR, DÄRFÖR BLIR DEN ALLTID BARA TVÅ STOR
-                //Eller inte...
-
-                //Problem är att eftersom Playercreatingtiles rensas, så rensas också rutorna som ska få mörkblå färg.
-                //Rektangeln är kvar men spriten försvinner..
-
                 if (Playertiles.Contains(Playercreatingtiles.First()) && Playertiles.Contains(Playercreatingtiles.Last())
                 && Playercreatingtiles.First() != Playercreatingtiles.Last())
                 { //Om man har gått minstonde 2 steg och kraven ovan fylls, skapa mörkblåa brickor av dom ljusblåa.
                     FinishedUpdating(Playercreatingtiles);
-                    //Playercreatingtiles.Clear();
+                    Playercreatingtiles.Clear();
                     finishedcreating = true;
                 }
             }
@@ -129,6 +124,12 @@ namespace Gameproject.View
             {
                 Texture2D _texture = Maptextures[1];
                 spritebatch.Draw(_texture, _rect, Color.White);
+            }
+
+            if(Playertiles.Count > 85)
+            {
+                Console.WriteLine("Vann");
+                playerwon = true;
             }
             spritebatch.End();
         }
@@ -163,6 +164,14 @@ namespace Gameproject.View
         public List<Rectangle> Returnplayercreatedtiles()
         {
             return Playercreatingtiles;
+        }
+
+        public bool playerdidwin
+        {
+            get
+            {
+                return playerwon;
+            }
         }
     }
 }

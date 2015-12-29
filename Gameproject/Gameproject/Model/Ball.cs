@@ -10,7 +10,7 @@ namespace Gameproject.Model
     class Ball
     {
         public Vector2 BallPos;
-        private float maxspeed = 0.4f;
+        private float maxspeed = 0.3f;
         private float minspeed = 0.2f;
         private Vector2 BallVelocity;
         private float Ballradius = 0.02f;

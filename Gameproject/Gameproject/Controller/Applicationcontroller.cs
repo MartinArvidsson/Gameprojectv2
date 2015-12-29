@@ -98,10 +98,28 @@ namespace Gameproject.Controller
         {
             var buttonclicked = Keyboard.GetState();
 
+            if (playersim.isgameover == true)
+            {
+                System.Console.WriteLine("ded");
+                //Startmenyn startas för att man dog.
+            }
+
+            if (drawmap.playerdidwin == true)
+            {
+                //Vinn spelet NYI
+            }
+
             if (buttonclicked.IsKeyDown(Keys.Escape))
             {
                 Exit();
             }
+
+            if(buttonclicked.IsKeyDown(Keys.P))
+            {
+                //Pausa, NYI
+            }
+
+
             
             //Ballupdating
             Ballcollisions = drawmap.Returnballcollisions();
@@ -134,6 +152,7 @@ namespace Gameproject.Controller
             //Playerupdating
             Playercollision = drawmap.Returnplayercollisions();
             playersim.SetBool(drawmap.Returnfinishedcreating());
+            playersim.setInt(ballsim.playerbeenhit);
             playersim.setcollisions(Playercollision, Ballcollisions);
             playersim.hitwall(camera);
 
