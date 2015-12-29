@@ -147,3 +147,35 @@ C:\Users\Martin\Desktop\REPO\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.D
 C:\Users\Martin\Desktop\REPO\Gameproject\Gameproject\obj\x86\Debug\Gameproject.csprojResolveAssemblyReference.cache
 C:\Users\Martin\Desktop\REPO\Gameproject\Gameproject\bin\Windows\Debug\Content\Menubackground.png
 C:\Users\Martin\Desktop\REPO\Gameproject\Gameproject\bin\Windows\Debug\Content\playbutton.png
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\obj\x86\Debug\Gameproject.exe
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\obj\x86\Debug\Gameproject.pdb
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\Content\BALL.png
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\Content\Ballground.png
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\Content\Menubackground.png
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\Content\playbutton.png
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\Content\Player.png
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\Content\Playercreatingground.png
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\Content\Playergroundtile.png
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\Gameproject.exe
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\Gameproject.pdb
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\MonoGame.Framework.dll
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.MediaFoundation.dll
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.dll
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.XAudio2.dll
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.Direct3D11.dll
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.DXGI.dll
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.Direct2D1.dll
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.XInput.dll
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.RawInput.dll
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.Direct3D9.dll
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\MonoGame.Framework.xml
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.MediaFoundation.xml
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.xml
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.XAudio2.xml
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.Direct3D11.xml
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.DXGI.xml
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.Direct2D1.xml
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.XInput.xml
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.RawInput.xml
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.Direct3D9.xml
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\obj\x86\Debug\Gameproject.csprojResolveAssemblyReference.cache

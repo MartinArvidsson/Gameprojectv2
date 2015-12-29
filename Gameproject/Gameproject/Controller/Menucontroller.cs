@@ -20,7 +20,6 @@ namespace Gameproject.Controller
         Mainmenu mainmenu;
         MouseState currentmouse, previousmouse;
 
-        bool hasplayerclicked = false;
         bool hasplayerclickedplay = false;
 
         public Menucontroller(GraphicsDeviceManager _graphics)
@@ -45,13 +44,8 @@ namespace Gameproject.Controller
             currentmouse = Mouse.GetState();
 
             var mousepos = new Vector2(currentmouse.X, currentmouse.Y);
-            hasplayerclickedplay = mainmenu.Update(mousepos, playbutton, hasplayerclicked);
+            hasplayerclickedplay = mainmenu.Update(mousepos, playbutton,previousmouse,currentmouse);
 
-            if(previousmouse.LeftButton == ButtonState.Released && currentmouse.LeftButton == ButtonState.Pressed)
-            {
-                hasplayerclicked = true;
-                hasplayerclickedplay = mainmenu.Update(mousepos, playbutton, hasplayerclicked);
-            }
             return hasplayerclickedplay;
         }
 

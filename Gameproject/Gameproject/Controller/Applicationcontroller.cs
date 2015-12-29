@@ -18,6 +18,7 @@ namespace Gameproject.Controller
         private Camera camera = new Camera();
         private Menucontroller menucontroller;
         private Gamecontroller gamecontroller;
+        private GameTime gametime;
         private bool hasclickedplay;
 
         private BallSimulation ballsim;
@@ -78,11 +79,11 @@ namespace Gameproject.Controller
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             menucontroller = new Menucontroller(graphics);
-            //gamecontroller = new Gamecontroller(graphics);
+            gamecontroller = new Gamecontroller(graphics);
 
             menucontroller.LoadContent(spriteBatch,Content,camera);
 
-            //gamecontroller.Loadcontent(spriteBatch,Content);
+            gamecontroller.LoadContent(spriteBatch, Content, camera);
             
             //ballsim = new BallSimulation();
             //playersim = new Playersimulation();
@@ -123,12 +124,12 @@ namespace Gameproject.Controller
 
                     if(hasclickedplay == true)
                     {
-                        System.Console.WriteLine("hej");
-                        //CurrentGameState = Gamestate.Playing;
+                        CurrentGameState = Gamestate.Playing;
                     }
                     break;
 
                 case Gamestate.Playing:
+                    gamecontroller.Update(gameTime);
                     if(Keyboard.GetState().IsKeyDown(Keys.Escape))
                     {
                         CurrentGameState = Gamestate.MainMenu;
@@ -136,76 +137,6 @@ namespace Gameproject.Controller
                     break;
             }
 
-
-            //var buttonclicked = Keyboard.GetState();
-
-            //if (playersim.isgameover == true)
-            //{
-            //    System.Console.WriteLine("ded");
-            //    //Startmenyn startas för att man dog.
-            //}
-
-            //if (drawmap.playerdidwin == true)
-            //{
-            //    //Vinn spelet NYI
-            //}
-
-            //if (buttonclicked.IsKeyDown(Keys.Escape))
-            //{
-            //    Exit();
-            //}
-
-            //if(buttonclicked.IsKeyDown(Keys.P))
-            //{
-            //    //Pausa, NYI
-            //}
-
-
-            
-            ////Ballupdating
-            //Ballcollisions = drawmap.Returnballcollisions();
-            //newTiles = drawmap.Returnplayercreatedtiles();
-            //convertedballcollison = new List<Vector4>();
-            //convertednewTiles = new List<Vector4>();
-
-            //    foreach(Rectangle rect in Ballcollisions)
-            //    {
-            //        Vector2 convertedcoords = new Vector2(rect.X, rect.Y);
-            //        Vector2 convertedsize = new Vector2(rect.Width, rect.Height);
-            //        convertedcoords = camera.convertologicalcoords(convertedcoords);
-            //        convertedsize = camera.convertologicalcoords(convertedsize);
-
-            //        convertedballcollison.Add(new Vector4(convertedcoords.X, convertedcoords.Y, convertedsize.X, convertedsize.Y));
-            //    }
-
-            //    foreach (Rectangle rect in newTiles)
-            //    {
-            //        Vector2 convertedcoords = new Vector2(rect.X, rect.Y);
-            //        Vector2 convertedsize = new Vector2(rect.Width, rect.Height);
-            //        convertedcoords = camera.convertologicalcoords(convertedcoords);
-            //        convertedsize = camera.convertologicalcoords(convertedsize);
-
-            //        convertednewTiles.Add(new Vector4(convertedcoords.X, convertedcoords.Y, convertedsize.X, convertedsize.Y));
-            //    }
-
-            //ballsim.UpdateBall((float)gameTime.ElapsedGameTime.TotalSeconds, convertedballcollison, convertednewTiles);
-
-            ////Playerupdating
-            //Playercollision = drawmap.Returnplayercollisions();
-            //playersim.SetBool(drawmap.Returnfinishedcreating());
-            //playersim.setInt(ballsim.playerbeenhit);
-            //playersim.setcollisions(Playercollision, Ballcollisions);
-            //playersim.hitwall(camera);
-
-            //if (Keyboard.GetState().IsKeyDown(Keys.Up) || Keyboard.GetState().IsKeyDown(Keys.Down) ||
-            //    Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.Left))
-            //{
-            //    //Playermovements
-            //    playersim.UpdatePlayer(buttonclicked);
-            //}
-
-            ////Mapupdating
-            //drawmap.updatedtilestoadd(playersim.getplayercreatedtiles());
             base.Update(gameTime);
         }
 
@@ -223,10 +154,9 @@ namespace Gameproject.Controller
                     menucontroller.Draw();
                     break;
                 case Gamestate.Playing:
-                    //gamecontroller.Draw(spriteBatch, (float)gameTime.ElapsedGameTime.TotalSeconds);
+                    gamecontroller.Draw();
                     break;
             }
-            //startview.Draw();
             base.Draw(gameTime);
         }
     }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace Gameproject.View
         float scaledheight;
         Rectangle rect;
         Rectangle mouserect;
+        MouseState currentmouse, previousmouse;
 
         public Mainmenu(Camera _camera)
         {
@@ -25,11 +27,13 @@ namespace Gameproject.View
             buttonpos = new Vector2(0.45f, 0.75f);
         }
 
-        public bool Update(Vector2 _mousepos,Texture2D _button,bool _clicked)
+        public bool Update(Vector2 _mousepos,Texture2D _button,MouseState prevmouse,MouseState currmouse)
         {
             playbutton = _button;
             scaledbutton = camera.Scale(buttonradius *2, playbutton.Width);
             buttoncenter = new Vector2(playbutton.Width / 2, playbutton.Height / 2);
+            previousmouse = prevmouse;
+            currentmouse = currmouse;
 
             scaledheight = camera.scaledgame();
 
@@ -42,10 +46,11 @@ namespace Gameproject.View
             mouserect = new Rectangle((int)mousepos.X, (int)mousepos.Y, 1, 1);
             if(mouserect.Intersects(rect))
             {
-                if(_clicked == true)
+                if (previousmouse.LeftButton == ButtonState.Released && currentmouse.LeftButton == ButtonState.Pressed)
                 {
                     return true;
                 }
+                
                 else
                 {
                     return false;
