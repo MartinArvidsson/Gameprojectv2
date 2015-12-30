@@ -58,7 +58,6 @@
     <Compile Include="View\Drawmap.cs" />
     <Compile Include="View\DrawPlayer.cs" />
     <Compile Include="View\Menus\Mainmenu.cs" />
-    <Compile Include="View\Menus\Pausemenu.cs" />
     <Compile Include="View\Menus\Playerlostmenu.cs" />
     <Compile Include="View\Menus\Playerwonmenu.cs" />
     <Compile Include="View\Startview.cs" />
@@ -92,10 +91,19 @@
     <Content Include="Content\PlayerDiedbackground.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Playerdmg1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Playerdmg2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Playergroundtile.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Playerwonbackground.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\restartbutton.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.ico" />

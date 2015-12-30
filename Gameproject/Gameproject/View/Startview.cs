@@ -76,6 +76,15 @@ namespace Gameproject.View
 
         public void Draw()
         {
+            if(playersim.returnplayerhits() == 1)
+            {
+                playersprite = content.Load<Texture2D>("Playerdmg1");
+            }
+            if (playersim.returnplayerhits() == 2)
+            {
+                playersprite = content.Load<Texture2D>("Playerdmg2");
+            }
+            
             drawmap.Drawlevel(map, maptextures, spritebatch, camera); //Draws the map
             drawmap.Updatelevel(drawmap.Returnplayertilestoadd());
             drawballs.drawallballs(totalballs, camera, balltexture, spritebatch, ballcenter); //Draws the balls

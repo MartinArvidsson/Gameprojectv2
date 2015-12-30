@@ -179,3 +179,10 @@ C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\S
 C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.RawInput.xml
 C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\SharpDX.Direct3D9.xml
 C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\obj\x86\Debug\Gameproject.csprojResolveAssemblyReference.cache
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\Content\PlayerDiedbackground.png
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\Content\Playerwonbackground.png
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\Content\restartbutton.png
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\Content\Playerdmg1.png
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\Content\Playerdmg2.png
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\Content\KillingTime.wma
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\Content\KillingTime.xnb

@@ -31,8 +31,8 @@ namespace Gameproject.Controller
         private List<Vector2> playercreatedtiles = new List<Vector2>();
         private List<Texture2D> textures = new List<Texture2D>();
 
-        bool hasplayerclicked = false;
-        bool hasplayerclickedplay = false;
+        private bool playerhasdied = false;
+        private bool playerhaswon = false;
 
         public Gamecontroller(GraphicsDeviceManager _graphics)
         {
@@ -65,13 +65,14 @@ namespace Gameproject.Controller
 
             if (playersim.isgameover == true)
             {
-                System.Console.WriteLine("ded");
+                playerhasdied = true;
                 //Startmenyn startas för att man dog.
             }
 
             if (drawmap.playerdidwin == true)
             {
                 //Vinn spelet NYI
+                playerhaswon = true;
             }
 
             //if (buttonclicked.IsKeyDown(Keys.Escape))
@@ -134,6 +135,16 @@ namespace Gameproject.Controller
         public void Draw()
         {
             startview.Draw();
+        }
+
+        public bool playerdied()
+        {
+            return playerhasdied;
+        }
+
+        public bool playerwon()
+        {
+            return playerhaswon;
         }
     }
 }

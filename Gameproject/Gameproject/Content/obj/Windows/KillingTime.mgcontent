@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>C:/Users/Martin/Desktop/Project BETA/Gameproject/Gameproject/Content/KillingTime.mp3</SourceFile>
+  <SourceTime>2015-12-30T13:30:55.5741179+01:00</SourceTime>
+  <DestFile>C:/Users/Martin/Desktop/Project BETA/Gameproject/Gameproject/Content/bin/Windows/KillingTime.xnb</DestFile>
+  <DestTime>2015-12-30T13:56:02.9635068+01:00</DestTime>
+  <Importer>Mp3Importer</Importer>
+  <ImporterTime>2015-04-29T19:14:44+02:00</ImporterTime>
+  <Processor>SongProcessor</Processor>
+  <ProcessorTime>2015-04-29T19:14:44+02:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput>
+    <string>C:/Users/Martin/Desktop/Project BETA/Gameproject/Gameproject/Content/bin/Windows/KillingTime.wma</string>
+  </BuildOutput>
+</PipelineBuildEvent>

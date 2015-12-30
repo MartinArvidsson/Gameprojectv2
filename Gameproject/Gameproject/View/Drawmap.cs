@@ -126,9 +126,8 @@ namespace Gameproject.View
                 spritebatch.Draw(_texture, _rect, Color.White);
             }
 
-            if(Playertiles.Count > 85)
+            if(Playertiles.Count > 80)
             {
-                Console.WriteLine("Vann");
                 playerwon = true;
             }
             spritebatch.End();

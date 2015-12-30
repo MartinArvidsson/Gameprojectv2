@@ -28,6 +28,11 @@ namespace Gameproject.Model
             player.updateplayerlifes(playerhit);
         }
 
+        public int returnplayerhits()
+        {
+            return playerhit;
+        }
+
         public void setcollisions(List<Rectangle> _playercollisons, List<Rectangle> _ballcollisions)
         {
             playercollisions = _playercollisons;

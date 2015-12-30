@@ -3,6 +3,7 @@ using Gameproject.View;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
 
 
@@ -18,31 +19,21 @@ namespace Gameproject.Controller
         private Camera camera = new Camera();
         private Menucontroller menucontroller;
         private Gamecontroller gamecontroller;
-        private GameTime gametime;
-        private bool hasclickedplay;
-
-        private BallSimulation ballsim;
-        private Playersimulation playersim;
-        private Startview startview;
-        private Drawmap drawmap;
-        private LevelOne lvlone;
-        private int[,] map;
-        private List<Rectangle> Ballcollisions = new List<Rectangle>();
-        private List<Vector4> convertedballcollison;
-        private List<Rectangle> Playercollision = new List<Rectangle>();
-        private List<Rectangle> newTiles = new List<Rectangle>();
-        private List<Vector4> convertednewTiles;
-        private List<Vector2> playercreatedtiles = new List<Vector2>();
-
+        private Song song;
+        private bool hasclickedplay,hasclickedtryagain,hasclickednextlevel,doesuserwanttoexit;
+        private int currentcase = 1;
         enum Gamestate
         {
             MainMenu,
+            Newgame,
             Playing,
+            PlayerLost,
+            PlayerWon,
         }
 
         Gamestate CurrentGameState = Gamestate.MainMenu;
 
-        private List<Texture2D> textures = new List<Texture2D>();
+        //private List<Texture2D> textures = new List<Texture2D>();
 
         public Applicationcontroller()
         {
@@ -84,20 +75,12 @@ namespace Gameproject.Controller
             menucontroller.LoadContent(spriteBatch,Content,camera);
 
             gamecontroller.LoadContent(spriteBatch, Content, camera);
-            
-            //ballsim = new BallSimulation();
-            //playersim = new Playersimulation();
-            
-            //drawmap = new Drawmap();
-            //lvlone = new LevelOne();
-       
-            //startview = new Startview(Content, camera, spriteBatch, ballsim, playersim,drawmap, graphics);
 
-            ////Loads the map once when the application starts. Will use update function to call a function in drawmap that allows me to place new tiles..
-            //map = lvlone.getmap();
-            //textures = startview.ReturnedTextures();
-            //drawmap.Drawlevel(map, textures, spriteBatch, camera);
-            
+            song = Content.Load<Song>("KillingTime");
+
+            MediaPlayer.Play(song);
+            MediaPlayer.Volume = 0.3f;
+            MediaPlayer.IsRepeating = true;
             // TODO: use this.Content to load your game content here
         }
 
@@ -120,7 +103,14 @@ namespace Gameproject.Controller
             switch(CurrentGameState)
             {
                 case Gamestate.MainMenu:
-                    hasclickedplay = menucontroller.Update();
+                    currentcase = 1;
+                    hasclickedplay = menucontroller.Update(currentcase);
+                    doesuserwanttoexit = menucontroller.exitgame();
+
+                    if (doesuserwanttoexit == true)
+                    {
+                        Exit();
+                    }
 
                     if(hasclickedplay == true)
                     {
@@ -130,10 +120,51 @@ namespace Gameproject.Controller
 
                 case Gamestate.Playing:
                     gamecontroller.Update(gameTime);
-                    if(Keyboard.GetState().IsKeyDown(Keys.Escape))
+                    //Pause
+                    if(Keyboard.GetState().IsKeyDown(Keys.P))
                     {
                         CurrentGameState = Gamestate.MainMenu;
                     }
+                    if(gamecontroller.playerwon() == true)
+                    {
+                        CurrentGameState = Gamestate.PlayerWon;
+                    }
+                    if(gamecontroller.playerdied() == true)
+                    {
+                        CurrentGameState = Gamestate.PlayerLost;
+                    }
+                    break;
+                case Gamestate.PlayerWon:
+                    currentcase = 2;
+                    hasclickednextlevel = menucontroller.Update(currentcase);
+                    //exittomenu = menucontroller.exittomenu();
+
+                    //if(exittomenu == true)
+                    //{
+                    //    CurrentGameState = Gamestate.MainMenu;
+                    //}
+
+                    if (hasclickednextlevel == true)
+                    {
+                        CurrentGameState = Gamestate.Newgame;
+                        //Ny bana NYI;
+                    }
+                    break;
+
+                case Gamestate.PlayerLost:
+                    currentcase = 3;
+                    hasclickedtryagain = menucontroller.Update(currentcase);
+                    if (hasclickedtryagain == true)
+                    {
+                        CurrentGameState = Gamestate.Newgame;
+
+                        //Ny bana NYI;
+                    }
+                    break;
+                case Gamestate.Newgame:
+                    gamecontroller = new Gamecontroller(graphics);
+                    gamecontroller.LoadContent(spriteBatch, Content, camera);
+                    CurrentGameState = Gamestate.Playing;
                     break;
             }
 
@@ -151,10 +182,16 @@ namespace Gameproject.Controller
             switch(CurrentGameState)
             {
                 case Gamestate.MainMenu:
-                    menucontroller.Draw();
+                    menucontroller.Draw(currentcase);
                     break;
                 case Gamestate.Playing:
                     gamecontroller.Draw();
+                    break;
+                case Gamestate.PlayerWon:
+                    menucontroller.Draw(currentcase);
+                    break;
+                case Gamestate.PlayerLost:
+                    menucontroller.Draw(currentcase);
                     break;
             }
             base.Draw(gameTime);

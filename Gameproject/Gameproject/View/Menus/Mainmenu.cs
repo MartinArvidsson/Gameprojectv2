@@ -58,6 +58,26 @@ namespace Gameproject.View
             }
             else
             {
+                if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+        }
+
+        public bool exitgame()
+        {
+            if(Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
+                return true;
+            }
+            else
+            {
                 return false;
             }
         }
