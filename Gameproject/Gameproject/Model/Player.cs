@@ -32,47 +32,47 @@ namespace Gameproject.Model
             velocity = Vector2.Zero;
             if (key.IsKeyDown(Keys.Up) && !key.IsKeyDown(Keys.Right) && !key.IsKeyDown(Keys.Left) && !key.IsKeyDown(Keys.Down))
             {
-                if (isingamearea() == true)
-                {
+                //if (isingamearea() == true)
+                //{
                     velocity.Y = -movementspeed.Y;
-                }
-                else
-                {
-                    velocity.Y = (movementspeed.Y * 4);
-                }
+                //}
+                //else
+                //{
+                //    velocity.Y = (movementspeed.Y * 4);
+                //}
             }
             if (key.IsKeyDown(Keys.Down) && !key.IsKeyDown(Keys.Right) && !key.IsKeyDown(Keys.Left) && !key.IsKeyDown(Keys.Up))
             {
-                if (isingamearea() == true)
-                {
+                //if (isingamearea() == true)
+                //{
                     velocity.Y = movementspeed.Y;
-                }
-                else
-                {
-                    velocity.Y = -(movementspeed.Y * 4);
-                }
+                //}
+                //else
+                //{
+                //    velocity.Y = -(movementspeed.Y * 4);
+                //}
             }
             if (key.IsKeyDown(Keys.Right) && !key.IsKeyDown(Keys.Up) && !key.IsKeyDown(Keys.Left) && !key.IsKeyDown(Keys.Down))
             {
-                if (isingamearea() == true)
-                {
+                //if (isingamearea() == true)
+                //{
                     velocity.X = movementspeed.X;
-                }
-                else
-                {
-                    velocity.X = -(movementspeed.X * 4);
-                }
+                //}
+                //else
+                //{
+                //    velocity.X = -(movementspeed.X * 4);
+                //}
             }
             if (key.IsKeyDown(Keys.Left) && !key.IsKeyDown(Keys.Right) && !key.IsKeyDown(Keys.Up) && !key.IsKeyDown(Keys.Down))
             {
-                if (isingamearea() == true)
-                {
+                //if (isingamearea() == true)
+                //{
                     velocity.X = -movementspeed.X;
-                }
-                else
-                {
-                    velocity.X = (movementspeed.X * 4);
-                }
+                //}
+                //else
+                //{
+                //    velocity.X = (movementspeed.X * 4);
+                //}
             }
 
             Playerpos += velocity;
@@ -96,11 +96,11 @@ namespace Gameproject.Model
 
         public bool isingamearea()
         {
-            if (Playerpos.X + Playerradius > 1.0 || Playerpos.X - Playerradius < 0.0) //If player is about to exit out of the gamearea
+            if (Playerpos.X + Playerradius > 1.0 || Playerpos.X -Playerradius < 0.0) //If player is about to exit out of the gamearea
             {
                 return false;
             }
-            if (Playerpos.Y + Playerradius > 1.0 || Playerpos.Y - Playerradius < 0.0) //If player is about to exit out of the gamearea
+            if (Playerpos.Y + Playerradius > 1.0 || Playerpos.Y - Playerradius <= 0.0) //If player is about to exit out of the gamearea
             {
                 return false;
             }

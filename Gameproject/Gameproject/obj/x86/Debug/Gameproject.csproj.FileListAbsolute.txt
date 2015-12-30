@@ -186,3 +186,7 @@ C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\C
 C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\Content\Playerdmg2.png
 C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\Content\KillingTime.wma
 C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\Content\KillingTime.xnb
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\Gameproject.exe.manifest
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\bin\Windows\Debug\Gameproject.application
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\obj\x86\Debug\Gameproject.exe.manifest
+C:\Users\Martin\Desktop\Project BETA\Gameproject\Gameproject\obj\x86\Debug\Gameproject.application
