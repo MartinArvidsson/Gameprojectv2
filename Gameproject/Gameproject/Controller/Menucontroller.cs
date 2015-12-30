@@ -86,6 +86,11 @@ namespace Gameproject.Controller
             return mainmenu.exitgame();
         }
 
+        public bool exittomenu()
+        {
+            return playerwonmenu.exitgametomenu();
+        }
+
         public void Draw(int currentcase)
         {
             if(currentcase == 1)

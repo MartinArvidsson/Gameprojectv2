@@ -20,7 +20,7 @@ namespace Gameproject.Controller
         private Menucontroller menucontroller;
         private Gamecontroller gamecontroller;
         private Song song;
-        private bool hasclickedplay,hasclickedtryagain,hasclickednextlevel,doesuserwanttoexit;
+        private bool hasclickedplay,hasclickedtryagain,hasclickednextlevel,doesuserwanttoexit,exittomenu;
         private int currentcase = 1;
         enum Gamestate
         {
@@ -78,9 +78,9 @@ namespace Gameproject.Controller
 
             song = Content.Load<Song>("KillingTime");
 
-            MediaPlayer.Play(song);
-            MediaPlayer.Volume = 0.3f;
-            MediaPlayer.IsRepeating = true;
+            //MediaPlayer.Play(song);
+            //MediaPlayer.Volume = 0.3f;
+            //MediaPlayer.IsRepeating = true;
             // TODO: use this.Content to load your game content here
         }
 
@@ -137,12 +137,12 @@ namespace Gameproject.Controller
                 case Gamestate.PlayerWon:
                     currentcase = 2;
                     hasclickednextlevel = menucontroller.Update(currentcase);
-                    //exittomenu = menucontroller.exittomenu();
+                    exittomenu = menucontroller.exittomenu();
 
-                    //if(exittomenu == true)
-                    //{
-                    //    CurrentGameState = Gamestate.MainMenu;
-                    //}
+                    if(exittomenu == true)
+                    {
+                        CurrentGameState = Gamestate.MainMenu;
+                    }
 
                     if (hasclickednextlevel == true)
                     {

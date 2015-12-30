@@ -70,6 +70,18 @@ namespace Gameproject.View
 
         }
 
+        public bool exitgametomenu()
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.Back))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public void Draw(SpriteBatch _spritebatch,Texture2D _menubackground)
         {
             _spritebatch.Begin();
