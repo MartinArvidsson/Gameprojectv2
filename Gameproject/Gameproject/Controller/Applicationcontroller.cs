@@ -78,9 +78,9 @@ namespace Gameproject.Controller
 
             song = Content.Load<Song>("KillingTime");
 
-            //MediaPlayer.Play(song);
-            //MediaPlayer.Volume = 0.3f;
-            //MediaPlayer.IsRepeating = true;
+            MediaPlayer.Play(song);
+            MediaPlayer.Volume = 0.3f;
+            MediaPlayer.IsRepeating = true;
             // TODO: use this.Content to load your game content here
         }
 
