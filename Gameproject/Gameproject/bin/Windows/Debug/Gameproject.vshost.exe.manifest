@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Gameproject.exe" size="174080">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Gameproject.exe" size="175536">
       <assemblyIdentity name="Gameproject" version="3.4.0.456" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>IM/fZjMjSE7I/m1mUu5MMPnH2Ek=</dsig:DigestValue>
+        <dsig:DigestValue>IDtXxpvkxkTfNmC/GUhgikcTeBc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -228,13 +228,13 @@
       <dsig:DigestValue>fJvvDQuZ0QiIsoBM6D2dod/nJ0w=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Content\Player.png" size="25077">
+  <file name="Content\Player.png" size="26714">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>EMOuqDxOCR9nf1F4p5JeWRE+lh4=</dsig:DigestValue>
+      <dsig:DigestValue>j5S7dal4YsbDrtFBLUsh9p/kuRA=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\Playercreatingground.png" size="803733">

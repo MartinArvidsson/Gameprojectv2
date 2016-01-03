@@ -45,7 +45,7 @@ namespace Gameproject.View
         private List<Texture2D> maptextures = new List<Texture2D>();
         private List<Ball> totalballs = new List<Ball>();
 
-        public Startview(ContentManager _content, Camera _camera, SpriteBatch _spritebatch, BallSimulation _ballsim,Playersimulation _playersim,Drawmap _drawmap, GraphicsDeviceManager _graphics)
+        public Startview(ContentManager _content, Camera _camera, SpriteBatch _spritebatch, BallSimulation _ballsim,Playersimulation _playersim,Drawmap _drawmap, GraphicsDeviceManager _graphics,int[,] _map)
         {
             content = _content; //Camera etc..
             camera = _camera;
@@ -54,6 +54,7 @@ namespace Gameproject.View
             playersim = _playersim;
             drawmap = _drawmap;
             graphics = _graphics;
+            map = _map;
 
             balltexture = content.Load<Texture2D>("BALL"); //Balltexture
             ballcenter = new Vector2(balltexture.Width / 2, balltexture.Height / 2); //Ballcenter
@@ -68,8 +69,6 @@ namespace Gameproject.View
             maptextures.Add(ballbackgroundtexture); //Sprites added to list
             maptextures.Add(playerbackgroundtexture);
             maptextures.Add(playercreatestexture);
-
-            map = lvlone.getmap(); //Gets the map
             totalballs = ballsim.getballs(); //Gets the amount of balls
             player = playersim.getplayer();
         }

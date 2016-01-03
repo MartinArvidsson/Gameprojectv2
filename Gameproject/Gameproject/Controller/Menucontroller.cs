@@ -16,7 +16,7 @@ namespace Gameproject.Controller
         SpriteBatch spritebatch;
         ContentManager content;
         Camera camera;
-        Texture2D menubackground,playerwonbackground,playerlostbackground, playbutton,restartbutton;
+        Texture2D menubackground,playerwonbackground,playerlostbackground, playbutton,restartbutton,playerwongame;
         Mainmenu mainmenu;
         Playerwonmenu playerwonmenu;
         Playerlostmenu playerlostmenu;
@@ -38,6 +38,7 @@ namespace Gameproject.Controller
             menubackground = content.Load<Texture2D>("Menubackground.png");
             playerwonbackground = content.Load<Texture2D>("Playerwonbackground.png");
             playerlostbackground = content.Load<Texture2D>("Playerdiedbackground.png");
+            playerwongame = content.Load<Texture2D>("Playerwongame.png");
             playbutton = content.Load<Texture2D>("playbutton.png");
             restartbutton = content.Load<Texture2D>("restartbutton.png");
             mainmenu = new Mainmenu(camera);

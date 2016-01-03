@@ -12,10 +12,12 @@ namespace Gameproject.Model
         public Ball ball;
         Random rand = new Random();
         private int playerhit;
-        
-        int numberofballs = 3;
-        public BallSimulation()
+
+        int numberofballs;
+        public BallSimulation(int ballstoadd)
         {
+            numberofballs = ballstoadd;
+
             for (int i = 0; i < numberofballs; i++)
             {
                 balls.Add(ball = new Ball(rand)); //new ball object

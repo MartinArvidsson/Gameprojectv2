@@ -10,7 +10,7 @@ namespace Gameproject.Controller
         public int[,] getmap()
         {
             int[,] map;
-
+            Console.WriteLine("hej");
             return map = new int[,]
             {
                 {1,1,1,1,1,1,1,1,1,1},

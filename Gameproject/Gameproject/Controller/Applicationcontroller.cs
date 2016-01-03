@@ -22,6 +22,7 @@ namespace Gameproject.Controller
         private Song song;
         private bool hasclickedplay,hasclickedtryagain,hasclickednextlevel,doesuserwanttoexit,exittomenu;
         private int currentcase = 1;
+        private int currentlevel = 1;
         enum Gamestate
         {
             MainMenu,
@@ -74,7 +75,7 @@ namespace Gameproject.Controller
 
             menucontroller.LoadContent(spriteBatch,Content,camera);
 
-            gamecontroller.LoadContent(spriteBatch, Content, camera);
+            gamecontroller.LoadContent(spriteBatch, Content, camera, currentlevel);
 
             song = Content.Load<Song>("KillingTime");
 
@@ -127,6 +128,8 @@ namespace Gameproject.Controller
                     }
                     if(gamecontroller.playerwon() == true)
                     {
+                        currentlevel = gamecontroller.lvlchooser();
+                        System.Console.WriteLine(currentlevel);
                         CurrentGameState = Gamestate.PlayerWon;
                     }
                     if(gamecontroller.playerdied() == true)
@@ -157,13 +160,12 @@ namespace Gameproject.Controller
                     if (hasclickedtryagain == true)
                     {
                         CurrentGameState = Gamestate.Newgame;
-
                         //Ny bana NYI;
                     }
                     break;
                 case Gamestate.Newgame:
                     gamecontroller = new Gamecontroller(graphics);
-                    gamecontroller.LoadContent(spriteBatch, Content, camera);
+                    gamecontroller.LoadContent(spriteBatch, Content, camera,currentlevel);
                     CurrentGameState = Gamestate.Playing;
                     break;
             }

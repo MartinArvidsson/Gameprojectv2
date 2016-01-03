@@ -30,49 +30,49 @@ namespace Gameproject.Model
         public void updatecurrentpos(KeyboardState key)
         {
             velocity = Vector2.Zero;
-            if (key.IsKeyDown(Keys.Up) && !key.IsKeyDown(Keys.Right) && !key.IsKeyDown(Keys.Left) && !key.IsKeyDown(Keys.Down))
+            if (key.IsKeyDown(Keys.Up) && !key.IsKeyDown(Keys.Right) && !key.IsKeyDown(Keys.Left) && !key.IsKeyDown(Keys.Down)) //Up
             {
-                //if (isingamearea() == true)
-                //{
-                    velocity.Y = -movementspeed.Y;
-                //}
-                //else
-                //{
-                //    velocity.Y = (movementspeed.Y * 4);
-                //}
-            }
-            if (key.IsKeyDown(Keys.Down) && !key.IsKeyDown(Keys.Right) && !key.IsKeyDown(Keys.Left) && !key.IsKeyDown(Keys.Up))
-            {
-                //if (isingamearea() == true)
-                //{
+                if (Playerpos.Y - Playerradius < 0)
+                {
                     velocity.Y = movementspeed.Y;
-                //}
-                //else
-                //{
-                //    velocity.Y = -(movementspeed.Y * 4);
-                //}
+                }
+                else
+                {
+                    velocity.Y = -movementspeed.Y;
+                }
             }
-            if (key.IsKeyDown(Keys.Right) && !key.IsKeyDown(Keys.Up) && !key.IsKeyDown(Keys.Left) && !key.IsKeyDown(Keys.Down))
+            if (key.IsKeyDown(Keys.Down) && !key.IsKeyDown(Keys.Right) && !key.IsKeyDown(Keys.Left) && !key.IsKeyDown(Keys.Up)) //Down
             {
-                //if (isingamearea() == true)
-                //{
-                    velocity.X = movementspeed.X;
-                //}
-                //else
-                //{
-                //    velocity.X = -(movementspeed.X * 4);
-                //}
+                if (Playerpos.Y + Playerradius > 1)
+                {
+                    velocity.Y = -movementspeed.Y; 
+                }
+                else
+                {
+                    velocity.Y = movementspeed.Y;
+                }
             }
-            if (key.IsKeyDown(Keys.Left) && !key.IsKeyDown(Keys.Right) && !key.IsKeyDown(Keys.Up) && !key.IsKeyDown(Keys.Down))
+            if (key.IsKeyDown(Keys.Right) && !key.IsKeyDown(Keys.Up) && !key.IsKeyDown(Keys.Left) && !key.IsKeyDown(Keys.Down)) //Right
             {
-                //if (isingamearea() == true)
-                //{
+                if (Playerpos.X + Playerradius > 1)
+                {
                     velocity.X = -movementspeed.X;
-                //}
-                //else
-                //{
-                //    velocity.X = (movementspeed.X * 4);
-                //}
+                }
+                else
+                {
+                    velocity.X = movementspeed.X;
+                }
+            }
+            if (key.IsKeyDown(Keys.Left) && !key.IsKeyDown(Keys.Right) && !key.IsKeyDown(Keys.Up) && !key.IsKeyDown(Keys.Down)) //left
+            {
+                if (Playerpos.X - Playerradius < 0)
+                {
+                    velocity.X = movementspeed.X;
+                }
+                else
+                {
+                    velocity.X = -movementspeed.X;
+                }
             }
 
             Playerpos += velocity;
@@ -92,20 +92,6 @@ namespace Gameproject.Model
             {
                 return Playerpos;
             }
-        }
-
-        public bool isingamearea()
-        {
-            if (Playerpos.X + Playerradius > 1.0 || Playerpos.X -Playerradius < 0.0) //If player is about to exit out of the gamearea
-            {
-                return false;
-            }
-            if (Playerpos.Y + Playerradius > 1.0 || Playerpos.Y - Playerradius <= 0.0) //If player is about to exit out of the gamearea
-            {
-                return false;
-            }
-
-            return true;
         }
 
         public bool isgameover

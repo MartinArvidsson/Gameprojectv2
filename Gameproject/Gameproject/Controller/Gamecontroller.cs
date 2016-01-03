@@ -21,6 +21,8 @@ namespace Gameproject.Controller
         private Startview startview;
         private Drawmap drawmap;
         private LevelOne lvlone;
+        private LevelTwo lvltwo;
+        private LevelThree lvlthree;
         private int[,] map;
         private List<Rectangle> Ballcollisions = new List<Rectangle>();
         private List<Vector4> convertedballcollison;
@@ -32,28 +34,44 @@ namespace Gameproject.Controller
 
         private bool playerhasdied = false;
         private bool playerhaswon = false;
-
+        private int newlevel;
+        private int ballstoadd;
         public Gamecontroller(GraphicsDeviceManager _graphics)
         {
             graphics = _graphics;
         }
 
-        public void LoadContent(SpriteBatch _spritebatch,ContentManager _content,Camera _camera)
+        public void LoadContent(SpriteBatch _spritebatch,ContentManager _content,Camera _camera,int _newlevel)
         {
             spriteBatch = _spritebatch;
             Content = _content;
             camera = _camera;
-
-            ballsim = new BallSimulation();
+            newlevel = _newlevel;
             playersim = new Playersimulation();
-
             drawmap = new Drawmap();
-            lvlone = new LevelOne();
-
-            startview = new Startview(Content, camera, spriteBatch, ballsim, playersim, drawmap, graphics);
 
             //Loads the map once when the application starts. Will use update function to call a function in drawmap that allows me to place new tiles..
-            map = lvlone.getmap();
+            if(newlevel == 1)
+            {
+                lvlone = new LevelOne();
+                map = lvlone.getmap();
+                ballstoadd = 3;
+            }
+            if(newlevel == 2)
+            {
+                lvltwo = new LevelTwo();
+                map = lvltwo.getmap();
+                ballstoadd = 4;
+            }
+            if(newlevel == 3)
+            {
+                lvlthree = new LevelThree();
+                map = lvlthree.getmap();
+                ballstoadd = 6;
+            }
+
+            ballsim = new BallSimulation(ballstoadd);
+            startview = new Startview(Content, camera, spriteBatch, ballsim, playersim, drawmap, graphics,map);
             textures = startview.ReturnedTextures();
             drawmap.Drawlevel(map, textures, spriteBatch, camera);
         }
@@ -70,6 +88,7 @@ namespace Gameproject.Controller
             if (drawmap.playerdidwin == true)
             {
                 playerhaswon = true;
+                newlevel += 1;
             }
 
             //Ballupdating
@@ -132,6 +151,11 @@ namespace Gameproject.Controller
         public bool playerwon()
         {
             return playerhaswon;
+        }
+
+        public int lvlchooser()
+        {
+            return newlevel;
         }
     }
 }
