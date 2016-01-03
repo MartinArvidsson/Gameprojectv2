@@ -16,7 +16,6 @@ namespace Gameproject.Controller
         private ContentManager Content;
         private SpriteBatch spriteBatch;
         private Camera camera = new Camera();
-        private GameTime gameTime;
         private BallSimulation ballsim;
         private Playersimulation playersim;
         private Startview startview;
@@ -66,24 +65,12 @@ namespace Gameproject.Controller
             if (playersim.isgameover == true)
             {
                 playerhasdied = true;
-                //Startmenyn startas för att man dog.
             }
 
             if (drawmap.playerdidwin == true)
             {
-                //Vinn spelet NYI
                 playerhaswon = true;
             }
-
-            //if (buttonclicked.IsKeyDown(Keys.Escape))
-            //{
-            //    Exit();
-            //}
-
-            //if (buttonclicked.IsKeyDown(Keys.P))
-            //{
-            //    //Pausa, NYI
-            //}
 
             //Ballupdating
             Ballcollisions = drawmap.Returnballcollisions();
