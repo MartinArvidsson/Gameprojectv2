@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>C:/Users/Martin/Desktop/repo spel/Gameproject/Gameproject/Content/Ballplayerwallsound.wav</SourceFile>
+  <SourceTime>2016-01-04T13:33:32.4968265+01:00</SourceTime>
+  <DestFile>C:/Users/Martin/Desktop/repo spel/Gameproject/Gameproject/Content/bin/Windows/Ballplayerwallsound.xnb</DestFile>
+  <DestTime>2016-01-04T13:35:01.8884126+01:00</DestTime>
+  <Importer>WavImporter</Importer>
+  <ImporterTime>2015-04-29T19:14:44+02:00</ImporterTime>
+  <Processor>SoundEffectProcessor</Processor>
+  <ProcessorTime>2015-04-29T19:14:44+02:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>

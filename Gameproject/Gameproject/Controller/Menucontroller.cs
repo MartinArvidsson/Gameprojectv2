@@ -20,9 +20,10 @@ namespace Gameproject.Controller
         Mainmenu mainmenu;
         Playerwonmenu playerwonmenu;
         Playerlostmenu playerlostmenu;
+        Playerwongamemenu playerwongamemenu;
         MouseState currentmouse, previousmouse;
 
-        bool hasplayerclickedplay = false;
+        bool hasplayerclicked = false;
 
         public Menucontroller(GraphicsDeviceManager _graphics)
         {
@@ -44,6 +45,7 @@ namespace Gameproject.Controller
             mainmenu = new Mainmenu(camera);
             playerwonmenu = new Playerwonmenu(camera);
             playerlostmenu = new Playerlostmenu(camera);
+            playerwongamemenu = new Playerwongamemenu(camera);
 
         }
 
@@ -55,9 +57,9 @@ namespace Gameproject.Controller
                 currentmouse = Mouse.GetState();
 
                 var mousepos = new Vector2(currentmouse.X, currentmouse.Y);
-                hasplayerclickedplay = mainmenu.Update(mousepos, playbutton, previousmouse, currentmouse);
+                hasplayerclicked = mainmenu.Update(mousepos, playbutton, previousmouse, currentmouse);
 
-                return hasplayerclickedplay;
+                return hasplayerclicked;
             }
             if (currentcase == 2)
             {
@@ -65,9 +67,9 @@ namespace Gameproject.Controller
                 currentmouse = Mouse.GetState();
 
                 var mousepos = new Vector2(currentmouse.X, currentmouse.Y);
-                hasplayerclickedplay = playerwonmenu.Update(mousepos, playbutton, previousmouse, currentmouse);
+                hasplayerclicked = playerwonmenu.Update(mousepos, playbutton, previousmouse, currentmouse);
 
-                return hasplayerclickedplay;
+                return hasplayerclicked;
             }
             if (currentcase == 3)
             {
@@ -75,9 +77,19 @@ namespace Gameproject.Controller
                 currentmouse = Mouse.GetState();
 
                 var mousepos = new Vector2(currentmouse.X, currentmouse.Y);
-                hasplayerclickedplay = playerlostmenu.Update(mousepos, restartbutton, previousmouse, currentmouse);
+                hasplayerclicked = playerlostmenu.Update(mousepos, restartbutton, previousmouse, currentmouse);
 
-                return hasplayerclickedplay;
+                return hasplayerclicked;
+            }
+            if (currentcase == 4)
+            {
+                previousmouse = currentmouse;
+                currentmouse = Mouse.GetState();
+
+                var mousepos = new Vector2(currentmouse.X, currentmouse.Y);
+                hasplayerclicked = playerwongamemenu.Update(mousepos, restartbutton, previousmouse, currentmouse);
+
+                return hasplayerclicked;
             }
             return false;      
         }
@@ -105,6 +117,10 @@ namespace Gameproject.Controller
             if(currentcase == 3)
             {
                 playerlostmenu.Draw(spritebatch, playerlostbackground);
+            }
+            if(currentcase == 4)
+            {
+                playerwongamemenu.Draw(spritebatch, playerwongame);
             }
         }
         

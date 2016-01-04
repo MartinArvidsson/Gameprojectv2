@@ -120,13 +120,14 @@ namespace Gameproject.View
                     finishedcreating = true;
                 }
             }
+
             foreach (Rectangle _rect in Playertiles) //Mörkblåa rutor ritas ut.
             {
                 Texture2D _texture = Maptextures[1];
                 spritebatch.Draw(_texture, _rect, Color.White);
             }
 
-            if(Playertiles.Count > 80)
+            if(Playertiles.Count > 83)
             {
                 playerwon = true;
             }

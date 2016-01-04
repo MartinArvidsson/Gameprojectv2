@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Martin/Desktop/spelprog1/Gameproject/Gameproject/Content/KillingTime.mp3</SourceFile>
-  <SourceTime>2016-01-03T13:54:41.4008271+01:00</SourceTime>
-  <DestFile>C:/Users/Martin/Desktop/spelprog1/Gameproject/Gameproject/Content/bin/Windows/KillingTime.xnb</DestFile>
-  <DestTime>2016-01-03T13:55:27.9965438+01:00</DestTime>
+  <SourceFile>C:/Users/Martin/Desktop/repo spel/Gameproject/Gameproject/Content/KillingTime.mp3</SourceFile>
+  <SourceTime>2016-01-03T18:06:28.0336596+01:00</SourceTime>
+  <DestFile>C:/Users/Martin/Desktop/repo spel/Gameproject/Gameproject/Content/bin/Windows/KillingTime.xnb</DestFile>
+  <DestTime>2016-01-03T18:06:59.6699092+01:00</DestTime>
   <Importer>Mp3Importer</Importer>
   <ImporterTime>2015-04-29T19:14:44+02:00</ImporterTime>
   <Processor>SongProcessor</Processor>
@@ -15,6 +15,6 @@
   <Dependencies />
   <BuildAsset />
   <BuildOutput>
-    <string>C:/Users/Martin/Desktop/spelprog1/Gameproject/Gameproject/Content/bin/Windows/KillingTime.wma</string>
+    <string>C:/Users/Martin/Desktop/repo spel/Gameproject/Gameproject/Content/bin/Windows/KillingTime.wma</string>
   </BuildOutput>
 </PipelineBuildEvent>

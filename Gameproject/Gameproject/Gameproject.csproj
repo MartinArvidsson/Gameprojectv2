@@ -80,6 +80,7 @@
     <Compile Include="Controller\Menucontroller.cs" />
     <Compile Include="Model\Ball.cs" />
     <Compile Include="Model\Ballsimulation.cs" />
+    <Compile Include="Model\CollisionObserver.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\Playersimulation.cs" />
     <Compile Include="Program.cs" />
@@ -90,7 +91,10 @@
     <Compile Include="View\DrawPlayer.cs" />
     <Compile Include="View\Menus\Mainmenu.cs" />
     <Compile Include="View\Menus\Playerlostmenu.cs" />
+    <Compile Include="View\Menus\Playerwongamemenu.cs" />
     <Compile Include="View\Menus\Playerwonmenu.cs" />
+    <Compile Include="View\Splitterparticle.cs" />
+    <Compile Include="View\Splittersystem.cs" />
     <Compile Include="View\Startview.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -119,6 +123,9 @@
     <Content Include="Content\Playercreatingground.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Playerdamaged.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\PlayerDiedbackground.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -132,6 +139,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Playerwonbackground.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\playerwongame.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\restartbutton.png">

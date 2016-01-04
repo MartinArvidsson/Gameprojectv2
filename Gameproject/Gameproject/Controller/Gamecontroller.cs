@@ -55,7 +55,7 @@ namespace Gameproject.Controller
             {
                 lvlone = new LevelOne();
                 map = lvlone.getmap();
-                ballstoadd = 3;
+                ballstoadd = 2;
             }
             if(newlevel == 2)
             {
@@ -117,7 +117,7 @@ namespace Gameproject.Controller
                 convertednewTiles.Add(new Vector4(convertedcoords.X, convertedcoords.Y, convertedsize.X, convertedsize.Y));
             }
 
-            ballsim.UpdateBall((float)gameTime.ElapsedGameTime.TotalSeconds, convertedballcollison, convertednewTiles);
+            ballsim.UpdateBall((float)gameTime.ElapsedGameTime.TotalSeconds, convertedballcollison, convertednewTiles,startview);
 
             //Playerupdating
             Playercollision = drawmap.Returnplayercollisions();
@@ -136,11 +136,12 @@ namespace Gameproject.Controller
             //Mapupdating
             drawmap.updatedtilestoadd(playersim.getplayercreatedtiles());
 
+
         }
 
-        public void Draw()
+        public void Draw(GameTime gameTime)
         {
-            startview.Draw();
+            startview.Draw((float)gameTime.ElapsedGameTime.TotalSeconds);
         }
 
         public bool playerdied()

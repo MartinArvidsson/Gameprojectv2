@@ -20,7 +20,7 @@ namespace Gameproject.Controller
         private Menucontroller menucontroller;
         private Gamecontroller gamecontroller;
         private Song song;
-        private bool hasclickedplay,hasclickedtryagain,hasclickednextlevel,doesuserwanttoexit,exittomenu;
+        private bool hasclickedplay,hasclickedtryagain,hasclickednextlevel,doesuserwanttoexit,exittomenu,playerexit;
         private int currentcase = 1;
         private int currentlevel = 1;
         enum Gamestate
@@ -29,7 +29,8 @@ namespace Gameproject.Controller
             Newgame,
             Playing,
             PlayerLost,
-            PlayerWon,
+            PlayerWonlevel,
+            Playerwongame
         }
 
         Gamestate CurrentGameState = Gamestate.MainMenu;
@@ -79,9 +80,10 @@ namespace Gameproject.Controller
 
             song = Content.Load<Song>("KillingTime");
 
-            MediaPlayer.Play(song);
-            MediaPlayer.Volume = 0.3f;
-            MediaPlayer.IsRepeating = true;
+            //MediaPlayer.Play(song);
+            //MediaPlayer.Volume = 0.3f;
+            //MediaPlayer.IsRepeating = true;
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -129,21 +131,30 @@ namespace Gameproject.Controller
                     if(gamecontroller.playerwon() == true)
                     {
                         currentlevel = gamecontroller.lvlchooser();
-                        System.Console.WriteLine(currentlevel);
-                        CurrentGameState = Gamestate.PlayerWon;
+                        if(currentlevel < 4)
+                        {
+                            CurrentGameState = Gamestate.PlayerWonlevel;
+                        }
+                        else
+                        {
+                            CurrentGameState = Gamestate.Playerwongame;
+                        }
                     }
                     if(gamecontroller.playerdied() == true)
                     {
                         CurrentGameState = Gamestate.PlayerLost;
                     }
                     break;
-                case Gamestate.PlayerWon:
+                case Gamestate.PlayerWonlevel:
                     currentcase = 2;
                     hasclickednextlevel = menucontroller.Update(currentcase);
                     exittomenu = menucontroller.exittomenu();
 
                     if(exittomenu == true)
                     {
+                        currentlevel = 1;
+                        gamecontroller = new Gamecontroller(graphics);
+                        gamecontroller.LoadContent(spriteBatch, Content, camera, currentlevel);
                         CurrentGameState = Gamestate.MainMenu;
                     }
 
@@ -168,6 +179,17 @@ namespace Gameproject.Controller
                     gamecontroller.LoadContent(spriteBatch, Content, camera,currentlevel);
                     CurrentGameState = Gamestate.Playing;
                     break;
+                case Gamestate.Playerwongame:
+                    currentcase = 4;
+                    playerexit = menucontroller.Update(currentcase);
+                    if(playerexit == true)
+                    {
+                        currentlevel = 1;
+                        gamecontroller = new Gamecontroller(graphics);
+                        gamecontroller.LoadContent(spriteBatch, Content, camera, currentlevel);
+                        CurrentGameState = Gamestate.MainMenu;
+                    }
+                    break;
             }
 
             base.Update(gameTime);
@@ -187,12 +209,15 @@ namespace Gameproject.Controller
                     menucontroller.Draw(currentcase);
                     break;
                 case Gamestate.Playing:
-                    gamecontroller.Draw();
+                    gamecontroller.Draw(gameTime);
                     break;
-                case Gamestate.PlayerWon:
+                case Gamestate.PlayerWonlevel:
                     menucontroller.Draw(currentcase);
                     break;
                 case Gamestate.PlayerLost:
+                    menucontroller.Draw(currentcase);
+                    break;
+                case Gamestate.Playerwongame:
                     menucontroller.Draw(currentcase);
                     break;
             }

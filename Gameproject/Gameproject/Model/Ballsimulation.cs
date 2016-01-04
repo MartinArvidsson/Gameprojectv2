@@ -24,24 +24,23 @@ namespace Gameproject.Model
             }
         }
 
-        public void UpdateBall(float Elapsedtime,List<Vector4> playercollisons,List<Vector4> newplayercollisions)
+        public void UpdateBall(float Elapsedtime,List<Vector4> playercollisons,List<Vector4> newplayercollisions,CollisionObserver observer)
         {
             foreach (Ball ball in balls)
             {
                 ball.updatecurrentpos(Elapsedtime);
-                hitwall(ball, playercollisons, newplayercollisions);
+                hitwall(ball, playercollisons, newplayercollisions, observer);
             }
         }
-        public void hitwall(Ball ball, List<Vector4> playercollisons, List<Vector4> newplayercollisions)
+        public void hitwall(Ball ball, List<Vector4> playercollisons, List<Vector4> newplayercollisions,CollisionObserver observer)
         {
-
-            //Balls goes between 0.0 and 1.1
             foreach (Vector4 vector in playercollisons)
             {
                 int side;
 
                 if (SphereIntersectRectangle(ball.getballpos, ball.getballradius, vector, out side))
                 {
+                    observer.hitregularwall();
                     switch (side)
                     {
                         case 1:
@@ -66,6 +65,7 @@ namespace Gameproject.Model
 
                 if (SphereIntersectRectangle(ball.getballpos, ball.getballradius, vector, out side))
                 {
+                    observer.hitplayerwall();
                     switch (side)
                     {
                         case 1:
@@ -82,6 +82,7 @@ namespace Gameproject.Model
                             break;
                     }
                     playerhit += 1;
+                    observer.playerdamaged();
                 }
 
             }

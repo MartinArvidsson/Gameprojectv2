@@ -19,3 +19,21 @@
 /processorParam:Quality=Best
 /build:KillingTime.mp3
 
+#begin Ballwallsound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Ballwallsound.wav
+
+#begin Ballplayerwallsound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Ballplayerwallsound.wav
+
+#begin Playerplacedtiles.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Playerplacedtiles.wav
+
