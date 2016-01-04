@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Gameproject.exe" size="176128">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Gameproject.exe" size="178688">
       <assemblyIdentity name="Gameproject" version="3.4.0.456" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>yBQQMfYkOpJt1so7qI5JyrlhMgY=</dsig:DigestValue>
+        <dsig:DigestValue>kzWoPYo2383JkCgJYVo6jmUR1AM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -174,13 +174,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="Content\BALL.png" size="10998">
+  <file name="Content\BALL.png" size="2542">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>V9urzfACUg7CzyDttgB0KfR8gJM=</dsig:DigestValue>
+      <dsig:DigestValue>6OYZPBZo8VpTOJG64SWkejl9IL4=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\Ballground.png" size="370285">
@@ -228,13 +228,13 @@
       <dsig:DigestValue>86smcxgEp8h/wtOt3LYASuLxILs=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Content\Menubackground.png" size="34435">
+  <file name="Content\Menubackground.png" size="40645">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>OyoPF6sT4qAJILSSNXHPkLZp9vM=</dsig:DigestValue>
+      <dsig:DigestValue>MjhzlCvLi052wKpl8bm/jkVE6Wg=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\playbutton.png" size="7154">
@@ -262,6 +262,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>j90S3CmBVfJx0An5rwYEeFg3ZjQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Playerdamaged.png" size="66870">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>mue+fbqa+MfnzKhkh96Qxblv5HA=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\PlayerDiedbackground.png" size="14640">

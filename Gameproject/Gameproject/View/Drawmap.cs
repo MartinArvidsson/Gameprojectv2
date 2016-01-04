@@ -113,7 +113,7 @@ namespace Gameproject.View
             if(Playercreatingtiles.Count > 0)
             {
                 if (Playertiles.Contains(Playercreatingtiles.First()) && Playertiles.Contains(Playercreatingtiles.Last())
-                && Playercreatingtiles.First() != Playercreatingtiles.Last())
+                && Playercreatingtiles.First() != Playercreatingtiles.Last() && Playercreatingtiles.Count > 2)
                 { //Om man har gått minstonde 2 steg och kraven ovan fylls, skapa mörkblåa brickor av dom ljusblåa.
                     FinishedUpdating(Playercreatingtiles);
                     Playercreatingtiles.Clear();

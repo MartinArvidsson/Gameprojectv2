@@ -22,7 +22,7 @@ namespace Gameproject.Model
 
         public void updateplayerlifes(int playerhits)
         {
-            if(playerhits == playerlife)
+            if(playerhits >= playerlife)
             {
                 gameover = true;
             }

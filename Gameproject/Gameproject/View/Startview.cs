@@ -95,7 +95,7 @@ namespace Gameproject.View
             drawmap.Updatelevel(drawmap.Returnplayertilestoadd());
             if(drawmap.Returnfinishedcreating())
             {
-                //playerfinishedtiles.Play(0.1f,1,0);
+                playerfinishedtiles.Play(0.1f,1,0);
             }
             drawballs.drawallballs(totalballs, camera, balltexture, spritebatch, ballcenter); //Draws the balls
             drawplayer.drawplayer(player, camera, playersprite, spritebatch, playercenter); //Draws the player
@@ -116,7 +116,7 @@ namespace Gameproject.View
             Random _rand = new Random();
             float pitch = _rand.Next(0, 2);
             float pan = _rand.Next(0, 2);
-            //ballhitwall.Play(0.1f, pitch, pan);
+            ballhitwall.Play(0.05f, pitch, pan);
         }
 
         public void hitplayerwall()
@@ -124,7 +124,7 @@ namespace Gameproject.View
             Random _rand = new Random();
             float pitch = _rand.Next(0, 2);
             float pan = _rand.Next(0, 2);
-            //ballhitplayerwall.Play(0.1f, pitch, pan);
+            ballhitplayerwall.Play(0.05f, pitch, pan);
         }
 
         public void playerdamaged()
