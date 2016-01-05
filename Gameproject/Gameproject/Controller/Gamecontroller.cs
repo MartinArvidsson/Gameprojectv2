@@ -68,8 +68,8 @@ namespace Gameproject.Controller
                 lvlthree = new LevelThree();
                 map = lvlthree.getmap();
                 timer = 120;
-                //Ball that destroys?
-                //
+                //Add special tile on map 3 that instakills the player if he touches it, it doesn't count as a playertile so it's like the map is missing one block.
+                //Harder to navigate
                 ballstoadd = 5;
             }
 

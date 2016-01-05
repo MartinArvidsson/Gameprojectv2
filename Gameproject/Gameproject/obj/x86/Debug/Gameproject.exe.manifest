@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Gameproject.exe" size="181168">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Gameproject.exe" size="183216">
       <assemblyIdentity name="Gameproject" version="3.4.0.456" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>1Galp1Gc4NyBcHB5z/2G8kcK5OI=</dsig:DigestValue>
+        <dsig:DigestValue>WjPifB57MTzMEPzjkVqDXCdEaqA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
