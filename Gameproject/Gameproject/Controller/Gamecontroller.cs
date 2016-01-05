@@ -34,8 +34,7 @@ namespace Gameproject.Controller
 
         private bool playerhasdied = false;
         private bool playerhaswon = false;
-        private int newlevel;
-        private int ballstoadd;
+        private int newlevel,ballstoadd,timer;
         public Gamecontroller(GraphicsDeviceManager _graphics)
         {
             graphics = _graphics;
@@ -61,17 +60,22 @@ namespace Gameproject.Controller
             {
                 lvltwo = new LevelTwo();
                 map = lvltwo.getmap();
+                timer = 60;
                 ballstoadd = 4;
             }
             if(newlevel == 3)
             {
                 lvlthree = new LevelThree();
                 map = lvlthree.getmap();
-                ballstoadd = 6;
+                timer = 120;
+                //Ball that destroys?
+                //
+                ballstoadd = 5;
             }
 
             ballsim = new BallSimulation(ballstoadd);
-            startview = new Startview(Content, camera, spriteBatch, ballsim, playersim, drawmap, graphics,map);
+
+            startview = new Startview(Content, camera, spriteBatch, ballsim, playersim, drawmap, graphics,map,timer);
             textures = startview.ReturnedTextures();
             drawmap.Drawlevel(map, textures, spriteBatch, camera);
         }
@@ -80,7 +84,7 @@ namespace Gameproject.Controller
         {
             var buttonclicked = Keyboard.GetState();
 
-            if (playersim.isgameover == true)
+            if (playersim.isgameover == true || startview.Returntime() == true)
             {
                 playerhasdied = true;
             }

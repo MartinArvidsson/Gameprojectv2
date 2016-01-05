@@ -21,10 +21,11 @@ namespace Gameproject.View
         private BallSimulation ballsim;
         private Playersimulation playersim;
         private GraphicsDeviceManager graphics;
-
+        private SpriteFont font;
         private Drawballs drawballs = new Drawballs();
         private Drawmap drawmap;
         private DrawPlayer drawplayer = new DrawPlayer();
+        private Statusbar statusbar;
         private Player player;
         private SplitterSystem splittersystem;
 
@@ -42,13 +43,13 @@ namespace Gameproject.View
         private Vector2 playercenter, 
             ballcenter;
         private int[,] map;
-
+        private int timer;
         private List<Texture2D> maptextures = new List<Texture2D>();
         private List<Ball> totalballs = new List<Ball>();
 
         private SoundEffect ballhitwall, ballhitplayerwall,playerfinishedtiles;
 
-        public Startview(ContentManager _content, Camera _camera, SpriteBatch _spritebatch, BallSimulation _ballsim,Playersimulation _playersim,Drawmap _drawmap, GraphicsDeviceManager _graphics,int[,] _map)
+        public Startview(ContentManager _content, Camera _camera, SpriteBatch _spritebatch, BallSimulation _ballsim,Playersimulation _playersim,Drawmap _drawmap, GraphicsDeviceManager _graphics,int[,] _map,int _timer)
         {
             content = _content; //Camera etc..
             camera = _camera;
@@ -58,7 +59,7 @@ namespace Gameproject.View
             drawmap = _drawmap;
             graphics = _graphics;
             map = _map;
-
+            timer = _timer;
             balltexture = content.Load<Texture2D>("BALL"); //Balltexture
             ballcenter = new Vector2(balltexture.Width / 2, balltexture.Height / 2); //Ballcenter
 
@@ -72,7 +73,9 @@ namespace Gameproject.View
             ballhitplayerwall = content.Load<SoundEffect>("Ballplayerwallsound");
             playerfinishedtiles = content.Load<SoundEffect>("Playerplacedtiles");
             playertookdamage = content.Load<Texture2D>("Playerdamaged");
+            font = content.Load<SpriteFont>("font");
 
+            statusbar = new Statusbar(font, spritebatch,camera);
             maptextures.Add(ballbackgroundtexture); //Sprites added to list
             maptextures.Add(playerbackgroundtexture);
             maptextures.Add(playercreatestexture);
@@ -97,18 +100,33 @@ namespace Gameproject.View
             {
                 playerfinishedtiles.Play(0.1f,1,0);
             }
-            drawballs.drawallballs(totalballs, camera, balltexture, spritebatch, ballcenter); //Draws the balls
-            drawplayer.drawplayer(player, camera, playersprite, spritebatch, playercenter); //Draws the player
+            drawballs.drawallballs(totalballs, camera, balltexture, spritebatch, ballcenter); //Draws the balls.
+            drawplayer.drawplayer(player, camera, playersprite, spritebatch, playercenter); //Draws the player.
+
             if(splittersystem != null)
             {
                 splittersystem.Draw();
                 splittersystem.Update(elapsedtime);
             }
+
+            spritebatch.Begin();
+            if(timer != 0)
+            {
+                statusbar.Drawtimer(elapsedtime,timer);
+            }
+            statusbar.Drawplayerlives(playersim.returnplayerhits());
+            statusbar.Drawtilescompleted(drawmap.Returnplayertiles());
+            spritebatch.End();
         }
 
         public List<Texture2D> ReturnedTextures()
         {
             return maptextures;
+        }
+
+        public bool Returntime()
+        {
+            return statusbar.Returntime();
         }
 
         public void hitregularwall()

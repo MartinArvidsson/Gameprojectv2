@@ -113,7 +113,7 @@ namespace Gameproject.View
             if(Playercreatingtiles.Count > 0)
             {
                 if (Playertiles.Contains(Playercreatingtiles.First()) && Playertiles.Contains(Playercreatingtiles.Last())
-                && Playercreatingtiles.First() != Playercreatingtiles.Last() && Playercreatingtiles.Count > 2)
+                && Playercreatingtiles.First() != Playercreatingtiles.Last())
                 { //Om man har gått minstonde 2 steg och kraven ovan fylls, skapa mörkblåa brickor av dom ljusblåa.
                     FinishedUpdating(Playercreatingtiles);
                     Playercreatingtiles.Clear();
@@ -127,7 +127,7 @@ namespace Gameproject.View
                 spritebatch.Draw(_texture, _rect, Color.White);
             }
 
-            if(Playertiles.Count > 83)
+            if(Playertiles.Count > 50)
             {
                 playerwon = true;
             }
@@ -153,6 +153,11 @@ namespace Gameproject.View
         public List<Rectangle> Returnballcollisions()
         {
             return Playertiles;
+        }
+
+        public int Returnplayertiles()
+        {
+            return Playertiles.Count;
         }
 
 

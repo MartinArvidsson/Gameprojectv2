@@ -96,6 +96,7 @@
     <Compile Include="View\Splitterparticle.cs" />
     <Compile Include="View\Splittersystem.cs" />
     <Compile Include="View\Startview.cs" />
+    <Compile Include="View\Statusbar.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

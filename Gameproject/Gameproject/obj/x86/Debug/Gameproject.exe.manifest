@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Gameproject.exe" size="178688">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Gameproject.exe" size="181168">
       <assemblyIdentity name="Gameproject" version="3.4.0.456" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>reQOvYzveowfZo1iCtFrvCMrlUM=</dsig:DigestValue>
+        <dsig:DigestValue>1Galp1Gc4NyBcHB5z/2G8kcK5OI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -208,6 +208,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>eYhJYg9oV+IeIUPAXIDFAF3GtPo=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\font.xnb" size="21521">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>ZlygWafVo7ut6CpYhgkSralX+dM=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\KillingTime.wma" size="7034484">
