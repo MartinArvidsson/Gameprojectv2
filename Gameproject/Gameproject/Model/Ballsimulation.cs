@@ -24,16 +24,41 @@ namespace Gameproject.Model
             }
         }
 
-        public void UpdateBall(float Elapsedtime,List<Vector4> playercollisons,List<Vector4> newplayercollisions,CollisionObserver observer)
+        public void UpdateBall(float Elapsedtime,List<Vector4> playercollisons,List<Vector4> newplayercollisions,List<Vector4> deathtiles,CollisionObserver observer)
         {
             foreach (Ball ball in balls)
             {
                 ball.updatecurrentpos(Elapsedtime);
-                hitwall(ball, playercollisons, newplayercollisions, observer);
+                hitwall(ball, playercollisons, newplayercollisions, deathtiles, observer);
             }
         }
-        public void hitwall(Ball ball, List<Vector4> playercollisons, List<Vector4> newplayercollisions,CollisionObserver observer)
+        public void hitwall(Ball ball, List<Vector4> playercollisons, List<Vector4> newplayercollisions, List<Vector4> deathtiles, CollisionObserver observer)
         {
+            foreach (Vector4 vector in deathtiles)
+            {
+                int side;
+
+                if (SphereIntersectRectangle(ball.getballpos, ball.getballradius, vector, out side))
+                {
+                    observer.hitregularwall();
+                    switch (side)
+                    {
+                        case 1:
+                            ball.setballVelocityX(1);
+                            break;
+                        case -1:
+                            ball.setballVelocityX(-1);
+                            break;
+                        case 2:
+                            ball.setballVelocityY(1);
+                            break;
+                        case -2:
+                            ball.setballVelocityY(-1);
+                            break;
+                    }
+                }
+            }
+
             foreach (Vector4 vector in playercollisons)
             {
                 int side;

@@ -35,7 +35,8 @@ namespace Gameproject.View
 
         private Texture2D balltexture, 
             ballbackgroundtexture,
-            playerbackgroundtexture, 
+            playerbackgroundtexture,
+            levelthreetexture,
             playercreatestexture, 
             playersprite,
             playertookdamage;
@@ -68,6 +69,7 @@ namespace Gameproject.View
 
             ballbackgroundtexture = content.Load<Texture2D>("Ballground"); //Sprites
             playerbackgroundtexture = content.Load<Texture2D>("Playergroundtile");
+            levelthreetexture = content.Load<Texture2D>("lvl3specialtile");
             playercreatestexture = content.Load<Texture2D>("Playercreatingground");
             ballhitwall = content.Load<SoundEffect>("Ballwallsound");
             ballhitplayerwall = content.Load<SoundEffect>("Ballplayerwallsound");
@@ -79,6 +81,7 @@ namespace Gameproject.View
             maptextures.Add(ballbackgroundtexture); //Sprites added to list
             maptextures.Add(playerbackgroundtexture);
             maptextures.Add(playercreatestexture);
+            maptextures.Add(levelthreetexture);
             totalballs = ballsim.getballs(); //Gets the amount of balls
             player = playersim.getplayer();
         }

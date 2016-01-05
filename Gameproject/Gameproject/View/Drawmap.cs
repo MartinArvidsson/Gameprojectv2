@@ -13,6 +13,7 @@ namespace Gameproject.View
         private Rectangle rect;
         private List<Rectangle> Playertiles = new List<Rectangle>();
         private List<Rectangle> Balltiles = new List<Rectangle>();
+        private List<Rectangle> Deathtiles = new List<Rectangle>();
         private List<Rectangle> Playercreatingtiles = new List<Rectangle>();
         private List<Texture2D> Maptextures = new List<Texture2D>();
         private List<Rectangle> Tilesbyplayer = new List<Rectangle>();
@@ -61,6 +62,13 @@ namespace Gameproject.View
                             if (!Playertiles.Contains(rect))
                             {
                                 Playertiles.Add(rect);
+                            }
+                        }
+                        if(_texture == maptextures[3])
+                        {
+                            if(!Deathtiles.Contains(rect))
+                            {
+                                Deathtiles.Add(rect);
                             }
                         }
                     spritebatch.Draw(_texture,rect, Color.White);
@@ -127,7 +135,7 @@ namespace Gameproject.View
                 spritebatch.Draw(_texture, _rect, Color.White);
             }
 
-            if(Playertiles.Count > 84)
+            if(Playertiles.Count > 50)
             {
                 playerwon = true;
             }
@@ -169,6 +177,11 @@ namespace Gameproject.View
         public List<Rectangle> Returnplayercreatedtiles()
         {
             return Playercreatingtiles;
+        }
+
+        public List<Rectangle> ReturnDeathtiles()
+        {
+            return Deathtiles;
         }
 
         public bool playerdidwin

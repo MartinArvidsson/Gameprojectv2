@@ -15,6 +15,7 @@ namespace Gameproject.Model
         private List<Rectangle> playercreatedtiles = new List<Rectangle>();
         private List<Rectangle> playercollisions = new List<Rectangle>();
         private List<Rectangle> ballcollisions = new List<Rectangle>();
+        private List<Rectangle> deathtiles = new List<Rectangle>();
         private bool clearlist;
         private int playerhit;
         public void SetBool(bool finishedupdating)
@@ -33,10 +34,11 @@ namespace Gameproject.Model
             return playerhit;
         }
 
-        public void setcollisions(List<Rectangle> _playercollisons, List<Rectangle> _ballcollisions)
+        public void setcollisions(List<Rectangle> _playercollisons, List<Rectangle> _ballcollisions,List<Rectangle> _deathtiles)
         {
             playercollisions = _playercollisons;
             ballcollisions = _ballcollisions;
+            deathtiles = _deathtiles;
         }
 
         public void UpdatePlayer(KeyboardState key)
@@ -48,6 +50,14 @@ namespace Gameproject.Model
             if(clearlist == true)
             {
                 playercreatedtiles.Clear();
+            }
+            foreach(Rectangle rect in deathtiles)
+            {
+                if (rect.Contains(camera.Converttovisualcoords(player.getplayerpos)))
+                {
+                    int playerdied = 3;
+                    player.updateplayerlifes(playerdied);
+                }
             }
 
             //Outer ring of tiles/ Playerarea

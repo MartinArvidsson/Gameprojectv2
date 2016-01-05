@@ -53,7 +53,7 @@ namespace Gameproject.View
         }
         public void Drawtilescompleted(int playertiles)
         {
-            tiles = "Tiles completed: " + playertiles.ToString() + " / 85";
+            tiles = "Tiles completed: " + playertiles.ToString() + " / 80";
             tilespos = new Vector2(0.02f, 0.92f);
             tilespos = camera.Converttovisualcoords(tilespos);
             spritebatch.DrawString(font, tiles, new Vector2(tilespos.X + 1, tilespos.Y), Color.Black);

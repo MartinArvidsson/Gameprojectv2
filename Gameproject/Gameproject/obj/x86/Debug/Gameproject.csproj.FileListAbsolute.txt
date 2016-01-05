@@ -330,3 +330,4 @@ C:\Users\Martin\Desktop\erpo3\Gameproject\Gameproject\obj\x86\Debug\Gameproject.
 C:\Users\Martin\Desktop\erpo3\Gameproject\Gameproject\obj\x86\Debug\Gameproject.exe.manifest
 C:\Users\Martin\Desktop\erpo3\Gameproject\Gameproject\obj\x86\Debug\Gameproject.application
 C:\Users\Martin\Desktop\erpo3\Gameproject\Gameproject\bin\Windows\Debug\Content\font.xnb
+C:\Users\Martin\Desktop\erpo3\Gameproject\Gameproject\bin\Windows\Debug\Content\Lvl3specialtile.png

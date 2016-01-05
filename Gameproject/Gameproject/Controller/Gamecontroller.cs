@@ -28,7 +28,9 @@ namespace Gameproject.Controller
         private List<Vector4> convertedballcollison;
         private List<Rectangle> Playercollision = new List<Rectangle>();
         private List<Rectangle> newTiles = new List<Rectangle>();
+        private List<Rectangle> deathtiles = new List<Rectangle>();
         private List<Vector4> convertednewTiles;
+        private List<Vector4> converteddeathtiles;
         private List<Vector2> playercreatedtiles = new List<Vector2>();
         private List<Texture2D> textures = new List<Texture2D>();
 
@@ -98,8 +100,20 @@ namespace Gameproject.Controller
             //Ballupdating
             Ballcollisions = drawmap.Returnballcollisions();
             newTiles = drawmap.Returnplayercreatedtiles();
+            deathtiles = drawmap.ReturnDeathtiles();
             convertedballcollison = new List<Vector4>();
             convertednewTiles = new List<Vector4>();
+            converteddeathtiles = new List<Vector4>();
+
+            foreach (Rectangle rect in deathtiles)
+            {
+                Vector2 convertedcoords = new Vector2(rect.X, rect.Y);
+                Vector2 convertedsize = new Vector2(rect.Width, rect.Height);
+                convertedcoords = camera.convertologicalcoords(convertedcoords);
+                convertedsize = camera.convertologicalcoords(convertedsize);
+
+                converteddeathtiles.Add(new Vector4(convertedcoords.X, convertedcoords.Y, convertedsize.X, convertedsize.Y));
+            }
 
             foreach (Rectangle rect in Ballcollisions)
             {
@@ -121,13 +135,13 @@ namespace Gameproject.Controller
                 convertednewTiles.Add(new Vector4(convertedcoords.X, convertedcoords.Y, convertedsize.X, convertedsize.Y));
             }
 
-            ballsim.UpdateBall((float)gameTime.ElapsedGameTime.TotalSeconds, convertedballcollison, convertednewTiles,startview);
+            ballsim.UpdateBall((float)gameTime.ElapsedGameTime.TotalSeconds, convertedballcollison, convertednewTiles,converteddeathtiles,startview);
 
             //Playerupdating
             Playercollision = drawmap.Returnplayercollisions();
             playersim.SetBool(drawmap.Returnfinishedcreating());
             playersim.setInt(ballsim.playerbeenhit);
-            playersim.setcollisions(Playercollision, Ballcollisions);
+            playersim.setcollisions(Playercollision, Ballcollisions,deathtiles);
             playersim.hitwall(camera);
 
             if (Keyboard.GetState().IsKeyDown(Keys.Up) || Keyboard.GetState().IsKeyDown(Keys.Down) ||
