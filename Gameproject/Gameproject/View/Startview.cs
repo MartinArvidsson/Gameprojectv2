@@ -48,7 +48,7 @@ namespace Gameproject.View
         private List<Texture2D> maptextures = new List<Texture2D>();
         private List<Ball> totalballs = new List<Ball>();
 
-        private SoundEffect ballhitwall, ballhitplayerwall,playerfinishedtiles;
+        private SoundEffect ballhitwall, ballhitplayerwall;
 
         public Startview(ContentManager _content, Camera _camera, SpriteBatch _spritebatch, BallSimulation _ballsim,Playersimulation _playersim,Drawmap _drawmap, GraphicsDeviceManager _graphics,int[,] _map,int _timer)
         {
@@ -73,7 +73,6 @@ namespace Gameproject.View
             playercreatestexture = content.Load<Texture2D>("Playercreatingground");
             ballhitwall = content.Load<SoundEffect>("Ballwallsound");
             ballhitplayerwall = content.Load<SoundEffect>("Ballplayerwallsound");
-            playerfinishedtiles = content.Load<SoundEffect>("Playerplacedtiles");
             playertookdamage = content.Load<Texture2D>("Playerdamaged");
             font = content.Load<SpriteFont>("font");
 
@@ -99,10 +98,6 @@ namespace Gameproject.View
             
             drawmap.Drawlevel(map, maptextures, spritebatch, camera); //Draws the map
             drawmap.Updatelevel(drawmap.Returnplayertilestoadd());
-            if(drawmap.Returnfinishedcreating())
-            {
-                playerfinishedtiles.Play(0.1f,1,0);
-            }
             drawballs.drawallballs(totalballs, camera, balltexture, spritebatch, ballcenter); //Draws the balls.
             drawplayer.drawplayer(player, camera, playersprite, spritebatch, playercenter); //Draws the player.
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Martin/Desktop/erpo3/Gameproject/Gameproject/Content/Playerplacedtiles.wav</SourceFile>
-  <SourceTime>2016-01-05T13:17:07.0678881+01:00</SourceTime>
-  <DestFile>C:/Users/Martin/Desktop/erpo3/Gameproject/Gameproject/Content/bin/Windows/Playerplacedtiles.xnb</DestFile>
-  <DestTime>2016-01-05T13:18:09.3182102+01:00</DestTime>
+  <SourceFile>C:/Users/Martin/Desktop/Ny mapp (2)/Gameproject/Gameproject/Content/Playerplacedtiles.wav</SourceFile>
+  <SourceTime>2016-01-05T19:00:42.0953689+01:00</SourceTime>
+  <DestFile>C:/Users/Martin/Desktop/Ny mapp (2)/Gameproject/Gameproject/Content/bin/Windows/Playerplacedtiles.xnb</DestFile>
+  <DestTime>2016-01-05T19:01:53.1988533+01:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2015-04-29T19:14:44+02:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

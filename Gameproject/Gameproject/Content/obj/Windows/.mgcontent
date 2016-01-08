@@ -4,10 +4,10 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Martin/Desktop/erpo3/Gameproject/Gameproject/Content/KillingTime.mp3</File>
-    <File>C:/Users/Martin/Desktop/erpo3/Gameproject/Gameproject/Content/Ballwallsound.wav</File>
-    <File>C:/Users/Martin/Desktop/erpo3/Gameproject/Gameproject/Content/Ballplayerwallsound.wav</File>
-    <File>C:/Users/Martin/Desktop/erpo3/Gameproject/Gameproject/Content/Playerplacedtiles.wav</File>
-    <File>C:/Users/Martin/Desktop/erpo3/Gameproject/Gameproject/Content/font.spritefont</File>
+    <File>C:/Users/Martin/Desktop/Ny mapp (2)/Gameproject/Gameproject/Content/KillingTime.mp3</File>
+    <File>C:/Users/Martin/Desktop/Ny mapp (2)/Gameproject/Gameproject/Content/Ballwallsound.wav</File>
+    <File>C:/Users/Martin/Desktop/Ny mapp (2)/Gameproject/Gameproject/Content/Ballplayerwallsound.wav</File>
+    <File>C:/Users/Martin/Desktop/Ny mapp (2)/Gameproject/Gameproject/Content/Playerplacedtiles.wav</File>
+    <File>C:/Users/Martin/Desktop/Ny mapp (2)/Gameproject/Gameproject/Content/font.spritefont</File>
   </SourceFiles>
 </SourceFileCollection>
