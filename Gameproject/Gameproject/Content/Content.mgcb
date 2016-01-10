@@ -31,12 +31,6 @@
 /processorParam:Quality=Best
 /build:Ballplayerwallsound.wav
 
-#begin Playerplacedtiles.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Playerplacedtiles.wav
-
 #begin font.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor

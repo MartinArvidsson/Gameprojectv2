@@ -50,7 +50,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>c55TrIgNNwyIVPnFrIm+mlC+V+I=</dsig:DigestValue>
+        <dsig:DigestValue>qZ6ta41Wb6JqqtBKN0Rbq7llOW4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -246,13 +246,13 @@
       <dsig:DigestValue>t02zHDm5EvjEeNBwJBZ5hE2yJug=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Content\Menubackground.png" size="41542">
+  <file name="Content\Menubackground.png" size="41664">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>8KHNAIwdEfhtH32xdC8gGrx50+k=</dsig:DigestValue>
+      <dsig:DigestValue>h9xG9u6HJntHe8u7/3yti6m3bJY=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\playbutton.png" size="7154">
@@ -291,13 +291,13 @@
       <dsig:DigestValue>UFlVrh0cmEMObId3nZixpCn4Ick=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Content\PlayerDiedbackground.png" size="14640">
+  <file name="Content\PlayerDiedbackground.png" size="17814">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>btKL9bPlvJ1b0AKwnWuv2hSHyUA=</dsig:DigestValue>
+      <dsig:DigestValue>eL+U2qqldEy+zIjH0HnKolDS8LA=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\Playerdmg1.png" size="26229">

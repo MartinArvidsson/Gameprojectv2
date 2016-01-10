@@ -347,12 +347,6 @@ C:\Users\Martin\Desktop\Ny mapp (2)\Gameproject\Gameproject\bin\Windows\Debug\Co
 C:\Users\Martin\Desktop\Ny mapp (2)\Gameproject\Gameproject\bin\Windows\Debug\Content\Playergroundtile.png
 C:\Users\Martin\Desktop\Ny mapp (2)\Gameproject\Gameproject\bin\Windows\Debug\Content\playerwongame.png
 C:\Users\Martin\Desktop\Ny mapp (2)\Gameproject\Gameproject\bin\Windows\Debug\Content\restartbutton.png
-C:\Users\Martin\Desktop\Ny mapp (2)\Gameproject\Gameproject\bin\Windows\Debug\Content\Ballplayerwallsound.xnb
-C:\Users\Martin\Desktop\Ny mapp (2)\Gameproject\Gameproject\bin\Windows\Debug\Content\Ballwallsound.xnb
-C:\Users\Martin\Desktop\Ny mapp (2)\Gameproject\Gameproject\bin\Windows\Debug\Content\font.xnb
-C:\Users\Martin\Desktop\Ny mapp (2)\Gameproject\Gameproject\bin\Windows\Debug\Content\KillingTime.wma
-C:\Users\Martin\Desktop\Ny mapp (2)\Gameproject\Gameproject\bin\Windows\Debug\Content\KillingTime.xnb
-C:\Users\Martin\Desktop\Ny mapp (2)\Gameproject\Gameproject\bin\Windows\Debug\Content\Playerplacedtiles.xnb
 C:\Users\Martin\Desktop\Ny mapp (2)\Gameproject\Gameproject\bin\Windows\Debug\Content\Playerwonbackground.png
 C:\Users\Martin\Desktop\Ny mapp (2)\Gameproject\Gameproject\bin\Windows\Debug\Gameproject.exe.manifest
 C:\Users\Martin\Desktop\Ny mapp (2)\Gameproject\Gameproject\bin\Windows\Debug\Gameproject.application
@@ -381,3 +375,9 @@ C:\Users\Martin\Desktop\Ny mapp (2)\Gameproject\Gameproject\bin\Windows\Debug\Sh
 C:\Users\Martin\Desktop\Ny mapp (2)\Gameproject\Gameproject\obj\x86\Debug\Gameproject.csprojResolveAssemblyReference.cache
 C:\Users\Martin\Desktop\Ny mapp (2)\Gameproject\Gameproject\obj\x86\Debug\Gameproject.exe.manifest
 C:\Users\Martin\Desktop\Ny mapp (2)\Gameproject\Gameproject\obj\x86\Debug\Gameproject.application
+C:\Users\Martin\Desktop\Ny mapp (2)\Gameproject\Gameproject\bin\Windows\Debug\Content\Ballplayerwallsound.xnb
+C:\Users\Martin\Desktop\Ny mapp (2)\Gameproject\Gameproject\bin\Windows\Debug\Content\Ballwallsound.xnb
+C:\Users\Martin\Desktop\Ny mapp (2)\Gameproject\Gameproject\bin\Windows\Debug\Content\font.xnb
+C:\Users\Martin\Desktop\Ny mapp (2)\Gameproject\Gameproject\bin\Windows\Debug\Content\KillingTime.wma
+C:\Users\Martin\Desktop\Ny mapp (2)\Gameproject\Gameproject\bin\Windows\Debug\Content\KillingTime.xnb
+C:\Users\Martin\Desktop\Ny mapp (2)\Gameproject\Gameproject\bin\Windows\Debug\Content\Playerplacedtiles.xnb
